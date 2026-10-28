@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+
+  --color-plum-50: #faf5ff;
+  --color-plum-100: #f3e8ff;
+  --color-plum-200: #e9d5ff;
+  --color-plum-300: #d8b4fe;
+  --color-plum-400: #c084fc;
+  --color-plum-500: #a855f7;
+  --color-plum-600: #9333ea;
+  --color-plum-700: #7e22ce;
+  --color-plum-800: #6b21a8;
+  --color-plum-900: #3b0764;
+  --color-plum-950: #24043f;
+
+  --color-gold-50: #fffbeb;
+  --color-gold-100: #fef3c7;
+  --color-gold-200: #fde68a;
+  --color-gold-300: #f7d77a;
+  --color-gold-400: #f5c84c;
+  --color-gold-500: #e3ad35;
+  --color-gold-600: #c8932a;
+  --color-gold-700: #9a6d1c;
+
+  --color-rose-accent: #f43f75;
+}
+
+@layer base {
+  html { -webkit-tap-highlight-color: transparent; }
+  body { @apply bg-plum-50/40 text-slate-800 antialiased; font-family: var(--font-sans); }
+  h1, h2, h3 { font-family: var(--font-display); @apply text-plum-950; }
+  :focus-visible { @apply outline-2 outline-offset-2 outline-gold-500; }
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility btn-primary { @apply btn bg-plum-800 text-white shadow-sm hover:bg-plum-900; }
+@utility btn-gold { @apply btn bg-gold-400 text-plum-950 shadow-sm hover:bg-gold-500; }
+@utility btn-outline { @apply btn border border-plum-200 bg-white text-plum-900 hover:border-plum-400 hover:bg-plum-50; }
+@utility btn-ghost { @apply btn text-plum-800 hover:bg-plum-100; }
+@utility btn-danger { @apply btn bg-red-600 text-white hover:bg-red-700; }
+@utility btn-sm { @apply px-3.5 py-1.5 text-xs; }
+@utility card { @apply rounded-2xl border border-plum-100 bg-white shadow-sm; }
+@utility label { @apply mb-1.5 block text-sm font-medium text-slate-700; }
+@utility input {
+  @apply w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-base text-slate-900 placeholder:text-slate-400 sm:text-sm focus:border-plum-600 focus:ring-2 focus:ring-plum-200 focus:outline-none;
+}
+@utility chip { @apply inline-flex items-center rounded-full bg-plum-100 px-2.5 py-1 text-xs font-medium text-plum-800; }
+@utility container-page { @apply mx-auto w-full max-w-6xl px-4 sm:px-6; }
+
+@layer components {
+  .prose-legal h2 { @apply mt-8 mb-2 text-xl font-bold; }
+  .prose-legal p, .prose-legal li { @apply text-[0.95rem] leading-relaxed text-slate-700; }
+  .prose-legal ul { @apply my-2 list-disc space-y-1 pl-5; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

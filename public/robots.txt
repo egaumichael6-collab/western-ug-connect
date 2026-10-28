@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /app/
+Disallow: /admin/
+Disallow: /login
+Disallow: /register
+Disallow: /reset-password
+
+# Replace with your live address after launch
+Sitemap: https://YOUR-SITE.netlify.app/sitemap.xml
