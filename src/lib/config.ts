@@ -17,7 +17,7 @@ export const GOALS: { value: Goal; label: string }[] = [
   { value: "long_term", label: "Long-term relationship" },
   { value: "dating", label: "Dating to see where it goes" },
   { value: "friendship", label: "Friendship first" },
-  { value: "sugar_dating", label: "Sugar dating (Diamond)" },
+  { value: "sugar_dating", label: "Sugar mummy / sugar daddy (Diamond)" },
 ];
 export const goalLabel = (g?: string | null) => GOALS.find((x) => x.value === g)?.label ?? "Not set";
 
@@ -64,5 +64,12 @@ export const REPORT_REASONS = [
   { value: "hate", label: "Hate or discrimination" },
   { value: "other", label: "Something else" },
 ];
+
+/** Display names for membership packages (internal codes stay the same). */
+export const PLAN_LABELS: Record<string, string> = { bronze_14: "Silver", bronze_30: "Gold", diamond_30: "Diamond" };
+export const tierLabel = (t?: string | null) => (t === "diamond" ? "Diamond" : t === "bronze" ? "Silver/Gold" : "");
+export const WHATSAPP_NUMBER = "18026189459";
+export const WHATSAPP_DISPLAY = "+1 802 618 9459";
+export const whatsappLink = (text = "Hello WESTERN UG CONNECT, I need help.") => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 
 export const ugx = (n: number) => `UGX ${n.toLocaleString("en-UG")}`;

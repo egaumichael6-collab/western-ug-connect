@@ -86,7 +86,7 @@ export function DatingTown() {
         <ul>
           <li>Create your free profile and set your district to {t.name} so nearby members can find you.</li>
           <li>Add a clear, recent photo and say what you are looking for — marriage, a long-term relationship, dating or friendship.</li>
-          <li>Activate Bronze (from UGX 10,000) to view profiles, match and message, or Diamond for the separate sugar-dating category.</li>
+          <li>Registration is free. To start browsing singles near you, subscribe to Silver (UGX 10,000) or Gold (UGX 15,000) — or Diamond (UGX 25,000) to find your dream sugar mummy or sugar daddy in {t.name}.</li>
           <li>Chat on the site first, then meet in a busy public place in {t.name} and tell a friend where you are going.</li>
         </ul>
         <h2>Safe dating in {t.name}</h2>
@@ -117,5 +117,30 @@ export function DatingTown() {
     </div>
   );
 }
+
+const INTENTS = (seo as { intents: { path: string; title: string; description: string; h1: string; paras: string[]; steps: string[] }[] }).intents;
+
+export function IntentPage({ path }: { path: string }) {
+  const it = INTENTS.find((x) => x.path === path)!;
+  usePageMeta(it.title, it.description);
+  return (
+    <div className="container-page max-w-3xl py-12">
+      <p className="text-xs font-semibold tracking-[0.25em] text-gold-600">◆ DIAMOND MEMBERSHIP</p>
+      <h1 className="mt-2 text-4xl font-bold">{it.h1}</h1>
+      <div className="prose-legal mt-6">
+        {it.paras.map((p) => <p key={p} className="mt-4">{p}</p>)}
+        <h2>How it works</h2>
+        <ol className="my-2 list-decimal space-y-1 pl-5">{it.steps.map((s) => <li key={s}>{s}</li>)}</ol>
+        <h2>Stay safe</h2>
+        <p>Never send money, airtime or "transport" in advance to someone you have not met, and never share your mobile money PIN. Report anyone who asks — our team reviews every report.</p>
+      </div>
+      <h2 className="mt-10 text-xl font-bold">Find matches near you</h2>
+      <TownLinks />
+      <JoinBox place="Uganda" />
+    </div>
+  );
+}
+export const SugarMummyPage = () => <IntentPage path="/sugar-mummy-uganda" />;
+export const SugarDaddyPage = () => <IntentPage path="/sugar-daddy-uganda" />;
 
 export default DatingHub;

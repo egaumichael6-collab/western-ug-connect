@@ -65,6 +65,7 @@ export default function Register() {
           <div className="text-5xl" aria-hidden>📩</div>
           <h1 className="mt-4 text-2xl font-bold">Check your email</h1>
           <p className="mt-2 text-slate-600">We sent a verification link to <strong>{sentTo}</strong>. Click it to activate your account, then log in.</p>
+          <p className="mt-4 rounded-xl bg-gold-50 p-3 text-sm text-plum-950"><strong>Next step after logging in:</strong> subscribe to Silver, Gold or Diamond to start browsing singles, sugar mummies and sugar daddies near you.</p>
           <p className="mt-4 text-sm text-slate-500">Can't find it? Check your spam folder. If you already have an account with this email, use "Forgot password" instead.</p>
           <Link to="/login" className="btn-primary mt-6">Go to login</Link>
         </div>
@@ -75,7 +76,8 @@ export default function Register() {
   return (
     <div className="container-page max-w-2xl py-12">
       <h1 className="text-3xl font-bold">Create your account</h1>
-      <p className="mt-1 text-slate-600">Free to join. Already a member? <Link to="/login" className="font-semibold text-plum-800 underline">Log in</Link></p>
+      <p className="mt-3 rounded-xl border border-gold-300 bg-gold-50 p-3 text-sm text-plum-950">Registration is <strong>free</strong>. After registering, subscribe to <strong>Silver, Gold or Diamond</strong> to start browsing and seeing singles, sugar mummies and sugar daddies near you.</p>
+      <p className="mt-3 text-slate-600">Free to join. Already a member? <Link to="/login" className="font-semibold text-plum-800 underline">Log in</Link></p>
       <form onSubmit={submit} className="card mt-6 space-y-5 p-6 sm:p-8" noValidate>
         {err && <Alert kind="error">{err}</Alert>}
         <div className="grid gap-4 sm:grid-cols-2">

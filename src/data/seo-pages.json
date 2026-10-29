@@ -1,12 +1,12 @@
 {
   "hub": {
     "path": "/dating-in-uganda",
-    "title": "Dating in Uganda — Meet Ugandan Singles Online",
-    "description": "WESTERN UG CONNECT is a Ugandan dating site for single adults. Meet singles in Mbarara, Kampala, Fort Portal, Kabale and across Uganda. Free to join, pay by MTN or Airtel Mobile Money.",
+    "title": "Dating in Uganda — Meet Singles, Sugar Mummies & Sugar Daddies",
+    "description": "WESTERN UG CONNECT is a Ugandan dating site to meet singles and find your dream sugar mummy or sugar daddy in Mbarara, Kampala, Fort Portal, Kabale and across Uganda. Register free, pay by MTN or Airtel Mobile Money.",
     "h1": "Dating in Uganda, made for Ugandans",
     "intro": [
-      "WESTERN UG CONNECT is a Ugandan dating site for single adults who want something real — marriage, a long-term relationship, dating to see where it goes, or friendship first. It started in Western Uganda and is open to Ugandans everywhere.",
-      "Creating an account is free. When you are ready to view profiles, match and send messages, you choose a short membership and pay with MTN or Airtel Mobile Money — no bank card needed. A real person checks every payment before a membership starts."
+      "WESTERN UG CONNECT is the Ugandan dating site to meet genuine singles and find your dream sugar mummy or sugar daddy. It started in Western Uganda and is open to Ugandans everywhere.",
+      "Registration is free. To start browsing and seeing singles, sugar mummies and sugar daddies near you, subscribe to Silver, Gold or Diamond and pay with MTN or Airtel Mobile Money — no bank card needed. A real person checks every payment before a membership starts."
     ],
     "sections": [
       {
@@ -20,18 +20,18 @@
         ]
       },
       {
-        "h2": "Serious relationships and marriage",
-        "text": "Most members join with the Bronze membership to find a partner for a serious relationship or marriage. Your profile shows your relationship goals, so you can quickly see who wants the same thing as you."
+        "h2": "Silver & Gold: love, marriage and serious relationships",
+        "text": "Silver (14 days, UGX 10,000) and Gold (30 days, UGX 15,000) let you browse, match and chat with singles looking for marriage, a long-term relationship, dating or friendship."
       },
       {
-        "h2": "Diamond: a separate category for sugar dating",
-        "text": "Diamond is a separate category for consenting adults who openly seek mutually agreed sugar-dating relationships. Diamond profiles are only visible to other Diamond members. Offering or requesting sex for money is prohibited, and the same community rules apply to everyone."
+        "h2": "Diamond: find your dream sugar mummy or sugar daddy",
+        "text": "Diamond (30 days, UGX 25,000) is where you meet sugar mummies and sugar daddies near you — and where sugar mummies and sugar daddies meet the people they are looking for. Diamond profiles are only visible to Diamond members. Adults 18+ only."
       },
       {
         "h2": "How online dating works here",
         "items": [
           "Create your free account and profile with a clear, recent photo.",
-          "Choose Bronze or Diamond and pay to 0794 273 661 by MTN or Airtel Mobile Money.",
+          "Register free, then subscribe to Silver, Gold or Diamond — pay to 0794 273 661 by MTN or Airtel Mobile Money.",
           "Enter the transaction ID from your SMS — an admin activates your membership.",
           "Discover members near you, connect, match and chat privately."
         ]
@@ -46,7 +46,12 @@
       "language": "Runyankole",
       "intro": "Mbarara is the biggest city in Western Uganda and the heart of Ankole — a busy university and business city where many young professionals, students and traders are looking for a partner.",
       "local": "Whether you grew up in Mbarara or moved here for work or study at one of the city's universities, WESTERN UG CONNECT helps you meet singles who share your roots and your plans for the future.",
-      "nearby": ["isingiro", "ibanda", "bushenyi", "ntungamo"]
+      "nearby": [
+        "isingiro",
+        "ibanda",
+        "bushenyi",
+        "ntungamo"
+      ]
     },
     {
       "slug": "kampala",
@@ -55,7 +60,11 @@
       "language": "Luganda",
       "intro": "Kampala is Uganda's capital and its largest city, home to people from every region of the country — including many from the West who live and work in the city.",
       "local": "If you live in Kampala but want a partner who understands your home area, or you simply want a respectful dating community instead of an anything-goes app, WESTERN UG CONNECT is built for you.",
-      "nearby": ["entebbe", "jinja", "masaka"]
+      "nearby": [
+        "entebbe",
+        "jinja",
+        "masaka"
+      ]
     },
     {
       "slug": "fort-portal",
@@ -64,7 +73,11 @@
       "language": "Rutooro",
       "intro": "Fort Portal, the tourism city of Tooro, sits below the Rwenzori Mountains and is surrounded by crater lakes and tea estates — a calm city with a growing community of young professionals.",
       "local": "Meet singles from Fort Portal, Kabarole and the wider Tooro region who are looking for genuine relationships, marriage or friendship.",
-      "nearby": ["kasese", "hoima", "mbarara"]
+      "nearby": [
+        "kasese",
+        "hoima",
+        "mbarara"
+      ]
     },
     {
       "slug": "kabale",
@@ -73,7 +86,11 @@
       "language": "Rukiga",
       "intro": "Kabale, in the cool Kigezi highlands near Lake Bunyonyi, is a university and trading town with strong family and church traditions.",
       "local": "Connect with singles in Kabale and across Kigezi who value faith, family and a serious commitment.",
-      "nearby": ["kisoro", "rukungiri", "ntungamo"]
+      "nearby": [
+        "kisoro",
+        "rukungiri",
+        "ntungamo"
+      ]
     },
     {
       "slug": "kasese",
@@ -82,7 +99,10 @@
       "language": "Lukonzo",
       "intro": "Kasese lies between the Rwenzori Mountains and Queen Elizabeth National Park — a hard-working town of farmers, traders, teachers and people working in tourism and mining.",
       "local": "Find singles in Kasese and the Rwenzori region who want a respectful, honest relationship.",
-      "nearby": ["fort-portal", "bushenyi"]
+      "nearby": [
+        "fort-portal",
+        "bushenyi"
+      ]
     },
     {
       "slug": "hoima",
@@ -91,7 +111,10 @@
       "language": "Runyoro",
       "intro": "Hoima, the seat of the Bunyoro Kingdom, is one of Uganda's fastest-growing cities, drawing new residents for work in the Albertine oil region.",
       "local": "Whether you are from Bunyoro or new to Hoima for work, meet singles nearby who are ready for something real.",
-      "nearby": ["masindi", "fort-portal"]
+      "nearby": [
+        "masindi",
+        "fort-portal"
+      ]
     },
     {
       "slug": "masaka",
@@ -100,7 +123,11 @@
       "language": "Luganda",
       "intro": "Masaka sits on the main road between Kampala and the West, close to the shores of Lake Victoria — a meeting point for people from Buganda and Western Uganda.",
       "local": "Meet singles in Masaka and along the Masaka–Mbarara road who want marriage, a long-term relationship or friendship.",
-      "nearby": ["kampala", "mbarara", "isingiro"]
+      "nearby": [
+        "kampala",
+        "mbarara",
+        "isingiro"
+      ]
     },
     {
       "slug": "bushenyi",
@@ -109,7 +136,11 @@
       "language": "Runyankole",
       "intro": "Bushenyi, together with neighbouring Ishaka, is a green farming and tea-growing area with a busy university and hospital community.",
       "local": "Find singles in Bushenyi, Ishaka and the surrounding districts who share your values.",
-      "nearby": ["mbarara", "rukungiri", "kasese"]
+      "nearby": [
+        "mbarara",
+        "rukungiri",
+        "kasese"
+      ]
     },
     {
       "slug": "ntungamo",
@@ -118,7 +149,11 @@
       "language": "Runyankole",
       "intro": "Ntungamo, on the road between Mbarara and Kabale, is a trading town where farming families and business people meet.",
       "local": "Meet singles from Ntungamo and nearby towns looking for a serious relationship.",
-      "nearby": ["mbarara", "kabale", "rukungiri"]
+      "nearby": [
+        "mbarara",
+        "kabale",
+        "rukungiri"
+      ]
     },
     {
       "slug": "ibanda",
@@ -127,7 +162,10 @@
       "language": "Runyankole",
       "intro": "Ibanda is a fast-growing municipality north of Mbarara known for farming, schools and a strong church community.",
       "local": "Connect with singles in Ibanda and the surrounding area who want love built on respect.",
-      "nearby": ["mbarara", "bushenyi"]
+      "nearby": [
+        "mbarara",
+        "bushenyi"
+      ]
     },
     {
       "slug": "rukungiri",
@@ -136,7 +174,11 @@
       "language": "Runyankole-Rukiga",
       "intro": "Rukungiri is a hilly district in South-Western Uganda, a gateway to the Ishasha sector of Queen Elizabeth National Park.",
       "local": "Meet singles from Rukungiri, Kanungu and nearby districts who are ready to settle down.",
-      "nearby": ["kabale", "bushenyi", "ntungamo"]
+      "nearby": [
+        "kabale",
+        "bushenyi",
+        "ntungamo"
+      ]
     },
     {
       "slug": "kisoro",
@@ -145,7 +187,10 @@
       "language": "Rufumbira",
       "intro": "Kisoro, in Uganda's far south-west, sits beneath the Virunga volcanoes near Mgahinga and Bwindi — home to mountain gorillas and close-knit communities.",
       "local": "Find singles in Kisoro and across Kigezi for genuine, lasting relationships.",
-      "nearby": ["kabale", "rukungiri"]
+      "nearby": [
+        "kabale",
+        "rukungiri"
+      ]
     },
     {
       "slug": "entebbe",
@@ -154,7 +199,10 @@
       "language": "Luganda",
       "intro": "Entebbe, on the shores of Lake Victoria, is home to Uganda's international airport and many professionals working in aviation, government and international organisations.",
       "local": "Meet singles in Entebbe and Wakiso who are looking for a respectful partner.",
-      "nearby": ["kampala", "masaka"]
+      "nearby": [
+        "kampala",
+        "masaka"
+      ]
     },
     {
       "slug": "jinja",
@@ -163,7 +211,10 @@
       "language": "Lusoga",
       "intro": "Jinja, at the source of the River Nile, is an industrial and tourism city in Busoga with a lively young population.",
       "local": "Whether you are from Busoga or from the West and living in Jinja, meet singles who want something genuine.",
-      "nearby": ["kampala", "entebbe"]
+      "nearby": [
+        "kampala",
+        "entebbe"
+      ]
     },
     {
       "slug": "masindi",
@@ -172,7 +223,10 @@
       "language": "Runyoro",
       "intro": "Masindi is a historic Bunyoro town and the gateway to Murchison Falls National Park and Budongo Forest.",
       "local": "Connect with singles in Masindi, Kiryandongo and across Bunyoro.",
-      "nearby": ["hoima", "kampala"]
+      "nearby": [
+        "hoima",
+        "kampala"
+      ]
     },
     {
       "slug": "isingiro",
@@ -181,7 +235,45 @@
       "language": "Runyankole",
       "intro": "Isingiro, south of Mbarara near the Tanzanian border, is a farming district known for its bananas and hard-working communities.",
       "local": "Meet singles from Isingiro and nearby Mbarara who are looking for marriage or a long-term relationship.",
-      "nearby": ["mbarara", "ntungamo", "masaka"]
+      "nearby": [
+        "mbarara",
+        "ntungamo",
+        "masaka"
+      ]
+    }
+  ],
+  "intents": [
+    {
+      "path": "/sugar-mummy-uganda",
+      "title": "Sugar Mummy in Uganda — Find Your Dream Sugar Mummy",
+      "description": "Looking for a sugar mummy in Uganda? Meet sugar mummies in Kampala, Mbarara, Fort Portal and across Uganda on WESTERN UG CONNECT. Register free, then subscribe to Diamond.",
+      "h1": "Find your dream sugar mummy in Uganda",
+      "paras": [
+        "WESTERN UG CONNECT is the place to find your dream sugar mummy in Uganda — in Kampala, Mbarara, Fort Portal, Kabale, Hoima, Masaka and across the country.",
+        "Registration is free. To start browsing and seeing sugar mummies near you, subscribe to Diamond (UGX 25,000 for 30 days) by MTN or Airtel Mobile Money. Diamond profiles are only visible to Diamond members, so your profile stays private from everyone else."
+      ],
+      "steps": [
+        "Register free and create your profile with a clear, recent photo.",
+        "Set what you are looking for to \"Sugar mummy / sugar daddy (Diamond)\".",
+        "Subscribe to Diamond and enter your mobile money transaction ID — an admin activates you.",
+        "Browse sugar mummies near you, match and chat privately."
+      ]
+    },
+    {
+      "path": "/sugar-daddy-uganda",
+      "title": "Sugar Daddy in Uganda — Find Your Dream Sugar Daddy",
+      "description": "Looking for a sugar daddy in Uganda? Meet sugar daddies in Kampala, Mbarara, Fort Portal and across Uganda on WESTERN UG CONNECT. Register free, then subscribe to Diamond.",
+      "h1": "Find your dream sugar daddy in Uganda",
+      "paras": [
+        "WESTERN UG CONNECT is the place to find your dream sugar daddy in Uganda — in Kampala, Mbarara, Fort Portal, Kabale, Hoima, Masaka and across the country.",
+        "Registration is free. To start browsing and seeing sugar daddies near you, subscribe to Diamond (UGX 25,000 for 30 days) by MTN or Airtel Mobile Money. Diamond profiles are only visible to Diamond members, so your profile stays private from everyone else."
+      ],
+      "steps": [
+        "Register free and create your profile with a clear, recent photo.",
+        "Set what you are looking for to \"Sugar mummy / sugar daddy (Diamond)\".",
+        "Subscribe to Diamond and enter your mobile money transaction ID — an admin activates you.",
+        "Browse sugar daddies near you, match and chat privately."
+      ]
     }
   ]
 }

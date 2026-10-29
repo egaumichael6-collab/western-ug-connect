@@ -3,13 +3,13 @@ import { usePageMeta } from "../lib/usePageMeta";
 import { PAYMENT_NUMBER_DISPLAY } from "../lib/config";
 
 const faqs: [string, string][] = [
-  ["Is registration free?", "Yes. Creating an account and a profile is free. To view member profiles, match and send messages you need an active Bronze or Diamond membership."],
+  ["Is registration free?", "Yes. Creating an account and a profile is free. Registration is free, but to start browsing and seeing singles, sugar mummies and sugar daddies near you, you need to subscribe to Silver, Gold or Diamond after registering."],
   ["Who can join?", "Single adults aged 18 and over. Our system checks your date of birth and rejects anyone under 18. Report any profile you believe belongs to a minor."],
   ["How do I pay?", `Choose a package, send the exact amount by MTN or Airtel Mobile Money to ${PAYMENT_NUMBER_DISPLAY}, then submit the transaction ID from your SMS on the payment confirmation page.`],
   ["When does my membership start?", "As soon as an administrator has matched your transaction ID with our mobile money records — usually within a few hours during the day. The 14 or 30 days are counted from that moment, not from when you paid."],
   ["What if my payment is rejected?", "You will see the reason on your Payment History page and in your notifications. Correct the details and submit again, or contact us with your transaction ID."],
   ["Can I renew early?", "Yes. If you pay again before your membership ends, the new period starts when the current one finishes, so you never lose days."],
-  ["What is the difference between Bronze and Diamond?", "Bronze is for relationships, marriage, dating and friendship. Diamond is a separate category for adults who openly seek consensual sugar-dating relationships; Diamond profiles are only visible to Diamond members. Diamond members can also use all Bronze features."],
+  ["What is the difference between Silver, Gold and Diamond?", "Silver (14 days, UGX 10,000) and Gold (30 days, UGX 15,000) let you browse, match and chat with singles looking for love, marriage, dating or friendship. Diamond (30 days, UGX 25,000) is where you find your dream sugar mummy or sugar daddy — Diamond profiles are only visible to Diamond members, and Diamond also includes everything in Silver and Gold."],
   ["Who can see my phone number and email?", "No other member. Only you and our administrators can see them, and only to run the service."],
   ["Can I hide my profile for a while?", "Yes. Pause your profile in Settings — you will disappear from Discover until you un-pause."],
   ["How do I delete my account?", "Go to Settings → Delete account. Your profile, photos, matches and messages are permanently deleted. We keep a minimal payment record for accounting, as explained in our Privacy Policy."],

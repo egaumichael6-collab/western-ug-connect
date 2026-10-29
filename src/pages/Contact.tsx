@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { usePageMeta } from "../lib/usePageMeta";
 import { supabase, friendlyError } from "../lib/supabase";
-import { PAYMENT_NUMBER_DISPLAY, SUPPORT_EMAIL } from "../lib/config";
+import { PAYMENT_NUMBER_DISPLAY, SUPPORT_EMAIL, WHATSAPP_DISPLAY, whatsappLink } from "../lib/config";
 import { useAuth } from "../context/AuthContext";
 import { Alert } from "../components/ui";
 
@@ -31,6 +31,7 @@ export default function Contact() {
         <div className="card mt-6 space-y-3 p-5 text-sm">
           {SUPPORT_EMAIL && <p><span className="font-semibold">Email:</span> <a className="text-plum-800 underline" href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a></p>}
           <p><span className="font-semibold">Payments number (Mobile Money):</span> {PAYMENT_NUMBER_DISPLAY}</p>
+          <p><span className="font-semibold">Help on WhatsApp:</span> <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="font-semibold text-plum-800 underline">{WHATSAPP_DISPLAY}</a></p>
           <p className="text-slate-600">For payment questions include your transaction ID. Never send us your PIN or password.</p>
           <p className="text-slate-600">Emergency? Call the Uganda Police on 999 or 112.</p>
         </div>

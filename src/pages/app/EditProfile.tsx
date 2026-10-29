@@ -168,7 +168,7 @@ export default function EditProfile() {
               <input id="ep-town" className="input" maxLength={60} value={p.town} onChange={(e) => setP({ ...p, town: e.target.value })} /></div>
           </div>
           {p.relationship_goal === "sugar_dating" && (
-            <Alert kind="warn">Sugar-dating profiles are shown only to Diamond members, and you need a Diamond membership to browse them. Arrangements must be legal and consensual — offering or requesting sex for money is prohibited.</Alert>
+            <Alert kind="warn">Sugar mummy / sugar daddy profiles are shown only to Diamond members, and you need a Diamond membership to browse them. Adults 18+ only — see our Terms.</Alert>
           )}
           <div><label className="label" htmlFor="ep-bio">Bio <span className="text-xs text-slate-500">({p.bio.length}/1000)</span></label>
             <textarea id="ep-bio" className="input min-h-32" maxLength={1000} placeholder="What makes you smile? What are you hoping to find?"

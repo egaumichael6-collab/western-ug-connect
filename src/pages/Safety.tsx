@@ -48,7 +48,7 @@ export default function Safety() {
           <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-slate-700">
             <li>Any arrangement must be legal, between consenting adults, and free of pressure.</li>
             <li>Offering or requesting sex in exchange for money is prohibited and will lead to removal.</li>
-            <li>Never pay "deposits", "registration fees" or "allowances in advance" to someone you have not met — this is the most common sugar-dating scam.</li>
+            <li>Never pay "deposits", "registration fees" or "allowances in advance" to someone you have not met — this is the most common sugar mummy / sugar daddy scam.</li>
             <li>Never let anyone take your ID, phone or documents, or control where you live or travel. If someone does, contact the Uganda Police on 999 or 112.</li>
           </ul>
         </div>

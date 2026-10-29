@@ -54,7 +54,7 @@ export function MembershipPrompt({ diamond = false, count }: { diamond?: boolean
       <div className="bg-gradient-to-br from-plum-900 to-plum-700 px-6 py-10 text-center text-white">
         <p className="text-xs font-semibold tracking-[0.25em] text-gold-300">{diamond ? "DIAMOND MEMBERS" : "MEMBERS ONLY"}</p>
         <h2 className="mt-2 text-2xl font-bold text-white">
-          {diamond ? "Diamond profiles need a Diamond membership" : "Activate a membership to start connecting"}
+          {diamond ? "Subscribe to Diamond to see sugar mummies and sugar daddies near you" : "Subscribe to start browsing singles near you"}
         </h2>
         {typeof count === "number" && (
           <p className="mt-2 text-plum-100">
@@ -63,7 +63,8 @@ export function MembershipPrompt({ diamond = false, count }: { diamond?: boolean
               : `${count} real member${count === 1 ? "" : "s"} currently match${count === 1 ? "es" : ""} these filters.`}
           </p>
         )}
-        <Link to="/memberships" className="btn-gold mt-6">Explore Memberships</Link>
+        <p className="mx-auto mt-3 max-w-md text-sm text-plum-100">{diamond ? "Diamond: UGX 25,000 for 30 days." : "Silver: UGX 10,000 for 14 days · Gold: UGX 15,000 for 30 days · Diamond: UGX 25,000 for 30 days."} Pay by MTN or Airtel Mobile Money.</p>
+        <Link to="/memberships" className="btn-gold mt-6">Subscribe now</Link>
       </div>
     </div>
   );

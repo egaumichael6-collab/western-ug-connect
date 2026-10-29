@@ -36,7 +36,7 @@ export default function AdminDashboard() {
   const stats: [string, string | number, string?, string?][] = [
     ["Registered members", o.total_members, `${o.completed_profiles} completed profiles`],
     ["Active members (30 days)", o.active_members, `${o.suspended_members} suspended`],
-    ["Active subscriptions", o.active_subscriptions, `${o.active_bronze} Bronze · ${o.active_diamond} Diamond members`],
+    ["Active subscriptions", o.active_subscriptions, `${o.active_bronze} Silver/Gold · ${o.active_diamond} Diamond members`],
     ["Pending payments", o.pending_payments, "Awaiting verification", "/admin/payments"],
     ["Confirmed payments", o.approved_payments, ugx(o.approved_revenue_ugx) + " verified"],
     ["Expired subscriptions", o.expired_subscriptions],

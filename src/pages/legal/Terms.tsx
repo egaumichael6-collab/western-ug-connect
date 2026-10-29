@@ -12,14 +12,14 @@ export default function Terms() {
       <p>Give accurate information, use your own photos, keep your password secret, and have only one account. You are responsible for activity on your account.</p>
       <h2>3. Memberships and payment</h2>
       <ul>
-        <li>Bronze 14 days: UGX 10,000. Bronze 30 days: UGX 15,000. Diamond 30 days: UGX 25,000.</li>
+        <li>Silver 14 days: UGX 10,000. Gold 30 days: UGX 15,000. Diamond 30 days: UGX 25,000.</li>
         <li>Pay only by mobile money to {PAYMENT_NUMBER_DISPLAY}, then submit your transaction ID on the site.</li>
         <li>A membership begins only after we verify the payment, and lasts for the stated number of days from activation. It ends automatically; there is no automatic renewal.</li>
         <li>Submitting false payment information or a reused transaction ID is fraud and leads to permanent removal.</li>
         <li>Activated memberships are non-refundable except where we made an error or could not provide the service. Refunds are paid back by mobile money.</li>
       </ul>
       <h2>4. Diamond membership</h2>
-      <p>Diamond is a separate category for consenting adults who openly seek mutually agreed sugar-dating relationships. It does not permit, and we do not facilitate, the exchange of money for sex, escort or commercial sexual services, trafficking, coercion or any unlawful activity. Profiles or messages that offer or request such services will be removed and may be reported to the police.</p>
+      <p>Diamond is the membership for adults looking for a sugar mummy or sugar daddy. It does not permit, and we do not facilitate, the exchange of money for sex, escort or commercial sexual services, trafficking, coercion or any unlawful activity. Profiles or messages that offer or request such services will be removed and may be reported to the police.</p>
       <h2>5. Conduct</h2>
       <p>You agree to follow our Community Guidelines. You must not harass, threaten, deceive or defraud anyone; ask members for money; share explicit content; impersonate others; spam; or use the service for commercial promotion.</p>
       <h2>6. Moderation</h2>

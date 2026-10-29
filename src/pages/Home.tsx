@@ -7,7 +7,7 @@ import seo from "../data/seo-pages.json";
 
 const steps = [
   { n: "1", t: "Create your free profile", d: "Register with your email, verify it, and tell members who you are and what you are looking for." },
-  { n: "2", t: "Choose a membership", d: "Pick Bronze or Diamond and pay by MTN or Airtel Mobile Money. We verify every payment by hand." },
+  { n: "2", t: "Choose a membership", d: "Registration is free. To start browsing singles, sugar mummies and sugar daddies near you, subscribe to Silver, Gold or Diamond by MTN or Airtel Mobile Money." },
   { n: "3", t: "Connect with intention", d: "Discover members, see why you were recommended, match, and message privately." },
 ];
 
@@ -19,8 +19,8 @@ const promises = [
 ];
 
 export default function Home() {
-  usePageMeta("Uganda Dating Site — Meet Singles in Mbarara, Kampala & Western Uganda",
-    "WESTERN UG CONNECT is a Ugandan dating site for single adults 18+. Meet singles in Mbarara, Kampala, Fort Portal, Kabale, Hoima and across Uganda. Free to join, pay by MTN or Airtel Mobile Money.");
+  usePageMeta("Uganda Dating Site — Meet Singles, Sugar Mummies & Sugar Daddies",
+    "Meet singles and find your dream sugar mummy or sugar daddy in Mbarara, Kampala, Fort Portal, Kabale, Hoima and across Uganda. Register free, then subscribe by MTN or Airtel Mobile Money.");
   const { user } = useAuth();
 
   return (
@@ -35,7 +35,7 @@ export default function Home() {
               Meet Your Person.<br /><span className="text-gold-300">Build Your Future.</span>
             </h1>
             <p className="mt-5 max-w-lg text-lg text-plum-100">
-              A respectful dating community for single adults in Western Uganda and across Uganda — from Mbarara to Fort Portal,
+              Meet singles — and find your dream sugar mummy or sugar daddy — in Western Uganda and across Uganda, from Mbarara to Fort Portal,
               Kabale to Hoima, and beyond.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -44,6 +44,7 @@ export default function Home() {
               <Link to="/memberships" className="btn px-6 py-3 text-base text-gold-300 underline-offset-4 hover:underline">Explore Memberships</Link>
             </div>
             <p className="mt-6 text-sm text-plum-200">18+ only · Free to register · Memberships from UGX 10,000</p>
+            <p className="mt-3 max-w-lg rounded-xl bg-white/10 px-4 py-3 text-sm text-white ring-1 ring-white/20">Register for free, then <strong className="text-gold-300">subscribe</strong> to start browsing and seeing singles, sugar mummies and sugar daddies near you.</p>
           </div>
           <div className="mx-auto w-full max-w-md md:max-w-none">
             <div className="rounded-[2.5rem] bg-white/10 p-2 shadow-2xl ring-1 ring-white/20"><HeroArt /></div>
@@ -88,18 +89,17 @@ export default function Home() {
       <section className="container-page py-16">
         <div className="grid gap-6 md:grid-cols-2">
           <div className="card p-8">
-            <p className="text-xs font-bold tracking-[0.25em] text-gold-600">BRONZE</p>
+            <p className="text-xs font-bold tracking-[0.25em] text-gold-600">SILVER &amp; GOLD</p>
             <h2 className="mt-2 text-2xl font-bold">For genuine relationships</h2>
-            <p className="mt-2 text-slate-600">14 days for UGX 10,000 or 30 days for UGX 15,000. Discover, match and message members looking for love,
+            <p className="mt-2 text-slate-600">Silver: 14 days for UGX 10,000. Gold: 30 days for UGX 15,000. Discover, match and message members looking for love,
               marriage, dating or friendship.</p>
-            <Link to="/memberships" className="btn-primary mt-6">See Bronze plans</Link>
+            <Link to="/memberships" className="btn-primary mt-6">See Silver &amp; Gold</Link>
           </div>
           <div className="rounded-2xl bg-gradient-to-br from-plum-950 to-plum-800 p-8 text-white shadow-sm">
             <p className="text-xs font-bold tracking-[0.25em] text-gold-300">DIAMOND</p>
-            <h2 className="mt-2 text-2xl font-bold text-white">A separate space for sugar dating</h2>
-            <p className="mt-2 text-plum-100">30 days for UGX 25,000. For consenting adults who openly seek mutually agreed sugar-dating
-              relationships — with clear rules and no tolerance for exploitation.</p>
-            <Link to="/memberships" className="btn-gold mt-6">See Diamond</Link>
+            <h2 className="mt-2 text-2xl font-bold text-white">Find your dream sugar mummy or sugar daddy</h2>
+            <p className="mt-2 text-plum-100">30 days for UGX 25,000. Browse sugar mummies and sugar daddies near you, match and chat privately. Adults 18+ only.</p>
+            <div className="mt-6 flex flex-wrap gap-3"><Link to="/memberships" className="btn-gold">See Diamond</Link><Link to="/sugar-mummy-uganda" className="btn border border-white/40 text-white hover:bg-white/10">Sugar mummy</Link><Link to="/sugar-daddy-uganda" className="btn border border-white/40 text-white hover:bg-white/10">Sugar daddy</Link></div>
           </div>
         </div>
         <p className="mt-8 text-center text-sm text-slate-600">

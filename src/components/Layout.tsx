@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { Logo } from "./Logo";
-import { PAYMENT_NUMBER_DISPLAY } from "../lib/config";
+import { PAYMENT_NUMBER_DISPLAY, WHATSAPP_DISPLAY, whatsappLink } from "../lib/config";
 import seo from "../data/seo-pages.json";
 
 const TOWNS = seo.towns;
@@ -52,7 +52,7 @@ function Navbar() {
                 <details className="group">
                   <summary className="flex cursor-pointer list-none items-center gap-2 rounded-full border border-plum-100 py-1 pl-3 pr-2 text-sm font-medium text-plum-900 hover:bg-plum-50">
                     {profile?.display_name ?? "Account"}
-                    {tier && <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase ${tier === "diamond" ? "bg-plum-900 text-gold-300" : "bg-gold-100 text-gold-700"}`}>{tier}</span>}
+                    {tier && <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase ${tier === "diamond" ? "bg-plum-900 text-gold-300" : "bg-gold-100 text-gold-700"}`}>{tier === "diamond" ? "Diamond" : "Member"}</span>}
                   </summary>
                   <div className="absolute right-0 mt-2 w-56 rounded-xl border border-plum-100 bg-white p-1.5 shadow-lg">
                     {[["/app/profile/edit", "Edit profile"], ["/app/subscription", "My subscription"], ["/app/payments", "Payment history"],
@@ -113,7 +113,7 @@ function Footer() {
         <div>
           <h2 className="mb-3 text-sm font-semibold tracking-wider text-gold-300">EXPLORE</h2>
           <ul className="space-y-2 text-sm">
-            {[["/about", "About us"], ["/memberships", "Memberships"], ["/dating-in-uganda", "Dating in Uganda"], ["/faq", "FAQ"], ["/contact", "Contact us"]].map(([to, l]) => (
+            {[["/about", "About us"], ["/memberships", "Memberships"], ["/dating-in-uganda", "Dating in Uganda"], ["/sugar-mummy-uganda", "Find a sugar mummy"], ["/sugar-daddy-uganda", "Find a sugar daddy"], ["/faq", "FAQ"], ["/contact", "Contact us"]].map(([to, l]) => (
               <li key={to}><Link to={to} className="hover:text-white">{l}</Link></li>
             ))}
           </ul>
@@ -131,6 +131,7 @@ function Footer() {
           <p className="text-sm">Official mobile money number:</p>
           <p className="mt-1 font-display text-xl font-bold text-gold-300">{PAYMENT_NUMBER_DISPLAY}</p>
           <p className="mt-2 text-xs text-plum-300">We will never ask for your PIN, password or verification codes. Only pay to this number.</p>
+          <p className="mt-4 text-sm">Need help? <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="font-semibold text-gold-300 underline">WhatsApp {WHATSAPP_DISPLAY}</a></p>
         </div>
       </div>
       <div className="border-t border-plum-900">
@@ -189,6 +190,11 @@ export default function Layout() {
       <main id="main" className="flex-1"><Outlet /></main>
       <Footer />
       {user && <BottomNav />}
+      <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" aria-label={`Chat with us on WhatsApp ${WHATSAPP_DISPLAY}`}
+        className={`fixed right-4 z-50 flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-semibold text-white shadow-lg hover:brightness-95 ${user ? "bottom-20 lg:bottom-6" : "bottom-6"}`}>
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="currentColor" aria-hidden><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.4.7 4.7 1.9 6.7L3 29l6.9-2.2c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.6 12.7-12.6S23 3 16 3zm0 23c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.3 1.3-4-.3-.4c-1.1-1.7-1.7-3.6-1.7-5.6C5.4 9.8 10.1 5.2 16 5.2s10.6 4.6 10.6 10.4S21.9 26 16 26zm5.8-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.6-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.6c.2.2 2.4 3.7 5.8 5.1.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
+        <span className="hidden sm:inline">Help on WhatsApp</span>
+      </a>
     </div>
   );
 }
