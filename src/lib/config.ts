@@ -67,6 +67,11 @@ export const REPORT_REASONS = [
 
 /** Display names for membership packages (internal codes stay the same). */
 export const PLAN_LABELS: Record<string, string> = { bronze_14: "Silver", bronze_30: "Gold", diamond_30: "Diamond" };
+export const PLAN_IMAGES: Record<string, { src: string; alt: string }> = {
+  bronze_14: { src: "/img/plan-silver.webp", alt: "AI-generated image of a smiling young lady at sunset over green hills — Silver membership" },
+  bronze_30: { src: "/img/plan-gold.webp", alt: "AI-generated image of a happy young couple at sunset — Gold membership" },
+  diamond_30: { src: "/img/plan-diamond.webp", alt: "AI-generated image of an elegant lady and a distinguished gentleman — Diamond membership for sugar mummies and sugar daddies" },
+};
 export const tierLabel = (t?: string | null) => (t === "diamond" ? "Diamond" : t === "bronze" ? "Silver/Gold" : "");
 export const WHATSAPP_NUMBER = "18026189459";
 export const WHATSAPP_DISPLAY = "+1 802 618 9459";

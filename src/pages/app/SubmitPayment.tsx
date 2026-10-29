@@ -4,7 +4,7 @@ import { supabase, friendlyError } from "../../lib/supabase";
 import { usePageMeta } from "../../lib/usePageMeta";
 import { usePackages } from "../../lib/usePackages";
 import { useAuth } from "../../context/AuthContext";
-import { PAYMENT_NUMBER, PAYMENT_NUMBER_DISPLAY, PAYMENT_NUMBER_LOCAL, ugx } from "../../lib/config";
+import { PAYMENT_NUMBER, PAYMENT_NUMBER_DISPLAY, PAYMENT_NUMBER_LOCAL, PLAN_IMAGES, ugx } from "../../lib/config";
 import { compressImage } from "../../lib/images";
 import { Alert, Spinner } from "../../components/ui";
 
@@ -92,6 +92,7 @@ export default function PayAndActivate() {
     <div className="mx-auto max-w-lg space-y-4">
       {/* Package summary */}
       <div className={`rounded-2xl p-5 ${diamond ? "bg-gradient-to-br from-plum-950 to-plum-800 text-white" : "card"}`}>
+        {PLAN_IMAGES[p.code] && <img src={PLAN_IMAGES[p.code].src} alt={PLAN_IMAGES[p.code].alt} width="480" height="260" className="mb-4 h-auto w-full rounded-xl" />}
         <p className={`text-xs font-bold tracking-[0.2em] ${diamond ? "text-gold-300" : "text-gold-600"}`}>YOUR PACKAGE</p>
         <h1 className={`mt-1 text-xl font-bold sm:text-2xl ${diamond ? "text-white" : ""}`}>{p.name}</h1>
         <div className="mt-3 flex items-end justify-between gap-3">

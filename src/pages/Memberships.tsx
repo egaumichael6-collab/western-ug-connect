@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { usePageMeta } from "../lib/usePageMeta";
 import { usePackages } from "../lib/usePackages";
 import { useAuth } from "../context/AuthContext";
-import { PAYMENT_NUMBER_DISPLAY, ugx, PLAN_LABELS, tierLabel } from "../lib/config";
+import { PAYMENT_NUMBER_DISPLAY, ugx, PLAN_LABELS, PLAN_IMAGES, tierLabel } from "../lib/config";
 import { Alert, Spinner } from "../components/ui";
 
 export default function Memberships() {
@@ -29,7 +29,8 @@ export default function Memberships() {
             const label = PLAN_LABELS[p.code] ?? p.name;
             return (
               <article key={p.code} className={`relative flex flex-col rounded-3xl p-7 shadow-sm ${diamond ? "bg-gradient-to-br from-plum-950 to-plum-800 text-white" : "border border-plum-100 bg-white"} ${featured ? "ring-2 ring-gold-400" : ""}`}>
-                {featured && <span className="absolute -top-3 left-7 rounded-full bg-gold-400 px-3 py-1 text-xs font-bold text-plum-950">BEST VALUE</span>}
+                {featured && <span className="absolute -top-3 left-7 z-10 rounded-full bg-gold-400 px-3 py-1 text-xs font-bold text-plum-950">BEST VALUE</span>}
+                {PLAN_IMAGES[p.code] && <img src={PLAN_IMAGES[p.code].src} alt={PLAN_IMAGES[p.code].alt} width="480" height="260" loading="lazy" className="-mx-2 -mt-2 mb-5 h-auto w-[calc(100%+1rem)] max-w-none rounded-2xl" />}
                 <p className={`text-xs font-bold tracking-[0.25em] ${diamond ? "text-gold-300" : "text-gold-600"}`}>{diamond ? "◆ DIAMOND" : label.toUpperCase()}</p>
                 <h2 className={`mt-2 text-xl font-bold ${diamond ? "text-white" : ""}`}>{p.name}</h2>
                 <p className="mt-4">

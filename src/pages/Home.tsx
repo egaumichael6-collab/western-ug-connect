@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { usePageMeta } from "../lib/usePageMeta";
 import { useAuth } from "../context/AuthContext";
-import HeroArt from "../components/HeroArt";
 import { PAYMENT_NUMBER_DISPLAY } from "../lib/config";
 import seo from "../data/seo-pages.json";
 
@@ -47,7 +46,7 @@ export default function Home() {
             <p className="mt-3 max-w-lg rounded-xl bg-white/10 px-4 py-3 text-sm text-white ring-1 ring-white/20">Register for free, then <strong className="text-gold-300">subscribe</strong> to start browsing and seeing singles, sugar mummies and sugar daddies near you.</p>
           </div>
           <div className="mx-auto w-full max-w-md md:max-w-none">
-            <div className="rounded-[2.5rem] bg-white/10 p-2 shadow-2xl ring-1 ring-white/20"><HeroArt /></div>
+            <div className="rounded-[2.5rem] bg-white/10 p-2 shadow-2xl ring-1 ring-white/20"><img src="/img/hero-ladies.webp" width="760" height="570" fetchPriority="high" className="h-auto w-full rounded-[2.2rem]" alt="AI-generated image of three smiling Rwandan ladies, one in a traditional mushanana, at sunset over green hills" /></div>
           </div>
         </div>
       </section>
