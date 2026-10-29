@@ -3,6 +3,9 @@ import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-do
 import { useAuth } from "../context/AuthContext";
 import { Logo } from "./Logo";
 import { PAYMENT_NUMBER_DISPLAY } from "../lib/config";
+import seo from "../data/seo-pages.json";
+
+const TOWNS = seo.towns;
 
 const publicLinks = [
   { to: "/about", label: "About" },
@@ -110,7 +113,7 @@ function Footer() {
         <div>
           <h2 className="mb-3 text-sm font-semibold tracking-wider text-gold-300">EXPLORE</h2>
           <ul className="space-y-2 text-sm">
-            {[["/about", "About us"], ["/memberships", "Memberships"], ["/faq", "FAQ"], ["/contact", "Contact us"]].map(([to, l]) => (
+            {[["/about", "About us"], ["/memberships", "Memberships"], ["/dating-in-uganda", "Dating in Uganda"], ["/faq", "FAQ"], ["/contact", "Contact us"]].map(([to, l]) => (
               <li key={to}><Link to={to} className="hover:text-white">{l}</Link></li>
             ))}
           </ul>
@@ -129,6 +132,16 @@ function Footer() {
           <p className="mt-1 font-display text-xl font-bold text-gold-300">{PAYMENT_NUMBER_DISPLAY}</p>
           <p className="mt-2 text-xs text-plum-300">We will never ask for your PIN, password or verification codes. Only pay to this number.</p>
         </div>
+      </div>
+      <div className="border-t border-plum-900">
+        <nav aria-label="Dating by town" className="container-page py-6">
+          <h2 className="mb-3 text-sm font-semibold tracking-wider text-gold-300">DATING ACROSS UGANDA</h2>
+          <ul className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+            {TOWNS.map((t) => (
+              <li key={t.slug}><Link to={`/dating/${t.slug}`} className="hover:text-white">Dating in {t.name}</Link></li>
+            ))}
+          </ul>
+        </nav>
       </div>
       <div className="border-t border-plum-900">
         <p className="container-page py-5 text-xs text-plum-300">© {new Date().getFullYear()} WESTERN UG CONNECT. Adults 18+ only.</p>

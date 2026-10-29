@@ -3,6 +3,7 @@ import { usePageMeta } from "../lib/usePageMeta";
 import { useAuth } from "../context/AuthContext";
 import HeroArt from "../components/HeroArt";
 import { PAYMENT_NUMBER_DISPLAY } from "../lib/config";
+import seo from "../data/seo-pages.json";
 
 const steps = [
   { n: "1", t: "Create your free profile", d: "Register with your email, verify it, and tell members who you are and what you are looking for." },
@@ -18,8 +19,8 @@ const promises = [
 ];
 
 export default function Home() {
-  usePageMeta("Dating in Western Uganda & across Uganda",
-    "Meet single adults in Mbarara, Fort Portal, Kabale, Kasese, Hoima and across Uganda. A safe, respectful dating community with manually verified memberships.");
+  usePageMeta("Uganda Dating Site — Meet Singles in Mbarara, Kampala & Western Uganda",
+    "WESTERN UG CONNECT is a Ugandan dating site for single adults 18+. Meet singles in Mbarara, Kampala, Fort Portal, Kabale, Hoima and across Uganda. Free to join, pay by MTN or Airtel Mobile Money.");
   const { user } = useAuth();
 
   return (
@@ -104,6 +105,27 @@ export default function Home() {
         <p className="mt-8 text-center text-sm text-slate-600">
           Membership payments go only to our official mobile money number <strong className="text-plum-900">{PAYMENT_NUMBER_DISPLAY}</strong>.
         </p>
+      </section>
+
+      <section className="bg-white py-16">
+        <div className="container-page">
+          <h2 className="text-center text-3xl font-bold">Find singles near you</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-slate-600">
+            Meet genuine single adults in your town — from Mbarara and Fort Portal to Kabale, Hoima, Masaka and Kampala.
+          </p>
+          <ul className="mt-8 flex flex-wrap justify-center gap-2">
+            {seo.towns.map((t) => (
+              <li key={t.slug}>
+                <Link to={`/dating/${t.slug}`} className="inline-block rounded-full border border-plum-200 px-4 py-2 text-sm font-medium text-plum-900 hover:bg-plum-50">
+                  {t.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 text-center">
+            <Link to="/dating-in-uganda" className="font-semibold text-plum-800 underline">More about dating in Uganda</Link>
+          </p>
+        </div>
       </section>
     </>
   );

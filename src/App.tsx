@@ -25,6 +25,8 @@ const router = createBrowserRouter([
       { path: "/privacy", element: l(() => import("./pages/legal/Privacy")) },
       { path: "/terms", element: l(() => import("./pages/legal/Terms")) },
       { path: "/guidelines", element: l(() => import("./pages/legal/Guidelines")) },
+      { path: "/dating-in-uganda", element: l(() => import("./pages/DatingPages")) },
+      { path: "/dating/:slug", element: l(() => import("./pages/DatingPages").then((m) => ({ default: m.DatingTown }))) },
       { path: "/register", element: <GuestOnly>{l(() => import("./pages/auth/Register"))}</GuestOnly> },
       { path: "/login", element: <GuestOnly>{l(() => import("./pages/auth/Login"))}</GuestOnly> },
       { path: "/forgot-password", element: l(() => import("./pages/auth/ForgotPassword")) },

@@ -8,7 +8,7 @@
 # Single-page app: every route is served by index.html
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[headers]]
