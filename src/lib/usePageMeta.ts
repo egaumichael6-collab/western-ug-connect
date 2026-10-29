@@ -28,6 +28,7 @@ export function usePageMeta(title: string, description?: string, opts: { noindex
       canon.rel = "canonical";
       document.head.appendChild(canon);
     }
-    canon.href = window.location.origin + window.location.pathname;
+    const path = window.location.pathname;
+    canon.href = window.location.origin + (path === "/" || path.endsWith("/") ? path : path + "/");
   }, [title, description, opts.noindex]);
 }
