@@ -107,7 +107,7 @@ function Footer() {
     <footer className="mt-20 bg-plum-950 text-plum-100">
       <div className="container-page grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <Logo light />
+          <Logo stacked />
           <p className="mt-4 text-sm text-plum-200">Your Journey to True Love Starts Here. A respectful dating community for single adults (18+) in Western Uganda and across Uganda.</p>
         </div>
         <div>
