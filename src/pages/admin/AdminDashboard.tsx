@@ -9,7 +9,7 @@ import AdminShell from "./AdminShell";
 
 interface Overview {
   total_members: number; completed_profiles: number; active_members: number; suspended_members: number;
-  active_subscriptions: number; active_bronze: number; active_diamond: number; expired_subscriptions: number;
+  active_subscriptions: number; active_bronze: number; active_campus?: number; active_diamond: number; expired_subscriptions: number;
   pending_payments: number; approved_payments: number; approved_revenue_ugx: number; open_reports: number; new_contact_messages: number;
   recent_registrations: { id: string; display_name: string; district: string; gender: string; created_at: string; profile_completed: boolean }[];
 }
@@ -36,7 +36,7 @@ export default function AdminDashboard() {
   const stats: [string, string | number, string?, string?][] = [
     ["Registered members", o.total_members, `${o.completed_profiles} completed profiles`],
     ["Active members (30 days)", o.active_members, `${o.suspended_members} suspended`],
-    ["Active subscriptions", o.active_subscriptions, `${o.active_bronze} Silver/Gold · ${o.active_diamond} Diamond members`],
+    ["Active subscriptions", o.active_subscriptions, `${o.active_bronze} Silver/Gold · ${o.active_campus ?? 0} Uni Babes · ${o.active_diamond} Diamond members`],
     ["Pending payments", o.pending_payments, "Awaiting verification", "/admin/payments"],
     ["Confirmed payments", o.approved_payments, ugx(o.approved_revenue_ugx) + " verified"],
     ["Expired subscriptions", o.expired_subscriptions],

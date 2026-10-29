@@ -71,7 +71,7 @@ export default function AdminMemberships() {
           <button key={f} onClick={() => setFilter(f)} className={`rounded-full px-3.5 py-1.5 text-sm font-semibold capitalize ${filter === f ? "bg-plum-800 text-white" : "bg-white text-plum-800 ring-1 ring-plum-200"}`}>{f}</button>
         ))}
         <select className="input w-full sm:ml-auto sm:w-40" value={tier} onChange={(e) => setTier(e.target.value)} aria-label="Tier">
-          <option value="">All tiers</option><option value="bronze">Silver / Gold</option><option value="diamond">Diamond</option>
+          <option value="">All tiers</option><option value="bronze">Silver / Gold</option><option value="campus">Juicy University Babes</option><option value="diamond">Diamond</option>
         </select>
       </div>
       {!rows ? <Spinner /> : (

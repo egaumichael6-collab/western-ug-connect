@@ -6,7 +6,7 @@ import { PAYMENT_NUMBER_DISPLAY, ugx, PLAN_LABELS, PLAN_IMAGES, tierLabel } from
 import { Alert, Spinner } from "../components/ui";
 
 export default function Memberships() {
-  usePageMeta("Membership packages", "Silver 14 days UGX 10,000 · Gold 30 days UGX 15,000 · Diamond 30 days UGX 25,000 — find singles and your dream sugar mummy or sugar daddy. Pay by MTN or Airtel Mobile Money.");
+  usePageMeta("Membership packages", "Silver 14 days UGX 10,000 · Gold 30 days UGX 15,000 · Juicy University Babes 30 days UGX 20,000 · Diamond 30 days UGX 25,000 — find singles, university ladies and your dream sugar mummy or sugar daddy. Pay by MTN or Airtel Mobile Money.");
   const { packages, error } = usePackages();
   const { user, tier } = useAuth();
 
@@ -16,36 +16,50 @@ export default function Memberships() {
         <p className="text-xs font-semibold tracking-[0.25em] text-gold-600">MEMBERSHIPS</p>
         <h1 className="mt-2 text-4xl font-bold">Choose your journey</h1>
         <p className="mt-3 text-slate-600">Simple, one-off mobile money payments. No automatic renewals. Your membership starts the moment we verify your payment.</p>
-        {!tier && <div className="mt-5 rounded-2xl border border-gold-300 bg-gold-50 p-4 text-left text-sm text-plum-950"><strong>How to start:</strong> 1) Register free. 2) Subscribe to Silver, Gold or Diamond below. 3) Start browsing and seeing singles, sugar mummies and sugar daddies near you.</div>}
+        {!tier && <div className="mt-5 rounded-2xl border border-gold-300 bg-gold-50 p-4 text-left text-sm text-plum-950"><strong>How to start:</strong> 1) Register free. 2) Subscribe to Silver, Gold, Juicy University Babes or Diamond below. 3) Start browsing and seeing singles, university ladies, sugar mummies and sugar daddies near you.</div>}
         {tier && <p className="mt-3"><span className="chip">You currently have an active {tierLabel(tier)} membership — <Link to="/app/subscription" className="ml-1 underline">view details</Link></span></p>}
       </div>
 
       {error && <div className="mt-6"><Alert kind="error">{error}</Alert></div>}
       {!packages ? <Spinner /> : (
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {packages.map((p) => {
             const diamond = p.tier === "diamond";
+            const campus = p.tier === "campus";
+            const dark = diamond || campus;
             const featured = p.code === "bronze_30";
             const label = PLAN_LABELS[p.code] ?? p.name;
+            const bg = diamond ? "bg-gradient-to-br from-plum-950 to-plum-800 text-white"
+              : campus ? "bg-gradient-to-br from-pink-600 via-fuchsia-700 to-plum-900 text-white"
+              : "border border-plum-100 bg-white";
+            const accent = diamond ? "text-gold-300" : campus ? "text-pink-200" : "text-gold-600";
             return (
-              <article key={p.code} className={`relative flex flex-col rounded-3xl p-7 shadow-sm ${diamond ? "bg-gradient-to-br from-plum-950 to-plum-800 text-white" : "border border-plum-100 bg-white"} ${featured ? "ring-2 ring-gold-400" : ""}`}>
+              <article key={p.code} id={p.code} className={`relative flex scroll-mt-24 flex-col rounded-3xl p-7 shadow-sm ${bg} ${featured ? "ring-2 ring-gold-400" : ""}`}>
                 {featured && <span className="absolute -top-3 left-7 z-10 rounded-full bg-gold-400 px-3 py-1 text-xs font-bold text-plum-950">BEST VALUE</span>}
-                {PLAN_IMAGES[p.code] && <img src={PLAN_IMAGES[p.code].src} alt={PLAN_IMAGES[p.code].alt} width="480" height="260" loading="lazy" className="-mx-2 -mt-2 mb-5 h-auto w-[calc(100%+1rem)] max-w-none rounded-2xl" />}
-                <p className={`text-xs font-bold tracking-[0.25em] ${diamond ? "text-gold-300" : "text-gold-600"}`}>{diamond ? "◆ DIAMOND" : label.toUpperCase()}</p>
-                <h2 className={`mt-2 text-xl font-bold ${diamond ? "text-white" : ""}`}>{p.name}</h2>
+                {campus && <span className="absolute -top-3 left-7 z-10 rounded-full bg-pink-300 px-3 py-1 text-xs font-bold text-fuchsia-950">NEW</span>}
+                {PLAN_IMAGES[p.code] ? (
+                  <img src={PLAN_IMAGES[p.code].src} alt={PLAN_IMAGES[p.code].alt} width="480" height="260" loading="lazy" className="-mx-2 -mt-2 mb-5 h-auto w-[calc(100%+1rem)] max-w-none rounded-2xl" />
+                ) : campus && (
+                  <div className="-mx-2 -mt-2 mb-5 flex aspect-[16/9] w-[calc(100%+1rem)] max-w-none flex-col items-center justify-center rounded-2xl bg-white/10 text-center ring-1 ring-white/20" aria-hidden>
+                    <span className="text-5xl">🎓</span>
+                    <span className="mt-2 font-display text-lg font-bold tracking-wide text-white">University ladies near you</span>
+                  </div>
+                )}
+                <p className={`text-xs font-bold tracking-[0.25em] ${accent}`}>{diamond ? "◆ DIAMOND" : campus ? "🎓 JUICY UNIVERSITY BABES" : label.toUpperCase()}</p>
+                <h2 className={`mt-2 text-xl font-bold ${dark ? "text-white" : ""}`}>{p.name}</h2>
                 <p className="mt-4">
-                  <span className={`font-display text-4xl font-bold ${diamond ? "text-gold-300" : "text-plum-900"}`}>{ugx(p.price_ugx)}</span>
+                  <span className={`font-display text-4xl font-bold ${diamond ? "text-gold-300" : campus ? "text-white" : "text-plum-900"}`}>{ugx(p.price_ugx)}</span>
                 </p>
-                <p className={`text-sm ${diamond ? "text-plum-200" : "text-slate-500"}`}>Valid {p.duration_days} days from confirmed activation</p>
-                {p.audience && <p className={`mt-4 text-sm ${diamond ? "text-plum-100" : "text-slate-600"}`}>{p.audience}</p>}
+                <p className={`text-sm ${diamond ? "text-plum-200" : campus ? "text-pink-100" : "text-slate-500"}`}>Valid {p.duration_days} days from confirmed activation</p>
+                {p.audience && <p className={`mt-4 text-sm ${diamond ? "text-plum-100" : campus ? "text-pink-50" : "text-slate-600"}`}>{p.audience}</p>}
                 <ul className="mt-5 flex-1 space-y-2 text-sm">
                   {p.benefits.map((b) => (
-                    <li key={b} className="flex gap-2"><span className={diamond ? "text-gold-300" : "text-emerald-600"} aria-hidden>✓</span>{b}</li>
+                    <li key={b} className="flex gap-2"><span className={diamond ? "text-gold-300" : campus ? "text-pink-200" : "text-emerald-600"} aria-hidden>✓</span>{b}</li>
                   ))}
                   {diamond && <li className="flex gap-2"><span className="text-gold-300" aria-hidden>✓</span>Also includes everything in Silver and Gold</li>}
                 </ul>
                 {p.is_active ? (
-                  <Link to={user ? `/app/checkout/${p.code}` : `/register`} className={`${diamond ? "btn-gold" : "btn-primary"} mt-7 w-full py-3`}>
+                  <Link to={user ? `/app/checkout/${p.code}` : `/register`} className={`${diamond ? "btn-gold" : campus ? "btn bg-white font-bold text-fuchsia-800 hover:bg-pink-50" : "btn-primary"} mt-7 w-full py-3`}>
                     {user ? "Choose this package" : "Join free to continue"}
                   </Link>
                 ) : (

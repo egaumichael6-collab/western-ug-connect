@@ -48,7 +48,24 @@ export function EmptyState({ title, children, action }: { title: string; childre
   );
 }
 
-export function MembershipPrompt({ diamond = false, count }: { diamond?: boolean; count?: number | null }) {
+export function MembershipPrompt({ diamond = false, campus = false, count }: { diamond?: boolean; campus?: boolean; count?: number | null }) {
+  if (campus) return (
+    <div className="card overflow-hidden">
+      <div className="bg-gradient-to-br from-pink-700 via-fuchsia-800 to-plum-900 px-6 py-10 text-center text-white">
+        <p className="text-xs font-semibold tracking-[0.25em] text-pink-200">🎓 JUICY UNIVERSITY BABES</p>
+        <h2 className="mt-2 text-2xl font-bold text-white">Subscribe to see university girls at a university near you</h2>
+        {typeof count === "number" && (
+          <p className="mt-2 text-pink-100">
+            {count === 0
+              ? "No university members match yet — new students join every day."
+              : `${count} university member${count === 1 ? "" : "s"} currently match${count === 1 ? "es" : ""}.`}
+          </p>
+        )}
+        <p className="mx-auto mt-3 max-w-md text-sm text-pink-100">Juicy University Babes: UGX 20,000 for 30 days. Pay by MTN or Airtel Mobile Money. Adults 18+ only.</p>
+        <Link to="/memberships#campus_30" className="btn mt-6 bg-white px-6 py-2.5 font-bold text-fuchsia-800 hover:bg-pink-50">Subscribe now</Link>
+      </div>
+    </div>
+  );
   return (
     <div className="card overflow-hidden">
       <div className="bg-gradient-to-br from-plum-900 to-plum-700 px-6 py-10 text-center text-white">
@@ -63,7 +80,7 @@ export function MembershipPrompt({ diamond = false, count }: { diamond?: boolean
               : `${count} real member${count === 1 ? "" : "s"} currently match${count === 1 ? "es" : ""} these filters.`}
           </p>
         )}
-        <p className="mx-auto mt-3 max-w-md text-sm text-plum-100">{diamond ? "Diamond: UGX 25,000 for 30 days." : "Silver: UGX 10,000 for 14 days · Gold: UGX 15,000 for 30 days · Diamond: UGX 25,000 for 30 days."} Pay by MTN or Airtel Mobile Money.</p>
+        <p className="mx-auto mt-3 max-w-md text-sm text-plum-100">{diamond ? "Diamond: UGX 25,000 for 30 days." : "Silver: UGX 10,000 for 14 days · Gold: UGX 15,000 for 30 days · Juicy University Babes: UGX 20,000 for 30 days · Diamond: UGX 25,000 for 30 days."} Pay by MTN or Airtel Mobile Money.</p>
         <Link to="/memberships" className="btn-gold mt-6">Subscribe now</Link>
       </div>
     </div>

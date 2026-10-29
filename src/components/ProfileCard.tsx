@@ -18,9 +18,11 @@ export default function ProfileCard({ m, footer }: { m: MemberCard; footer?: Rea
           </p>
           <p className="text-xs text-plum-100">{m.town ? `${m.town}, ` : ""}{m.district}</p>
         </div>
+        {typeof m.university === "string" && m.near === true && <span className="absolute left-2 top-2 rounded-full bg-fuchsia-600 px-2 py-0.5 text-[10px] font-bold text-white">NEAR YOU</span>}
         {m.is_favorite && <span className="absolute right-2 top-2 rounded-full bg-white/90 px-2 py-0.5 text-xs" title="Saved">★</span>}
       </Link>
       <div className="flex flex-1 flex-col gap-2 p-3">
+        {typeof m.university === "string" && <span className="self-start rounded-full bg-fuchsia-50 px-2.5 py-0.5 text-xs font-semibold text-fuchsia-800 ring-1 ring-fuchsia-200">🎓 {m.university}</span>}
         <span className="chip self-start">{goalLabel(m.relationship_goal)}</span>
         {m.reasons && m.reasons.length > 0 && (
           <ul className="space-y-0.5 text-xs text-emerald-800">

@@ -24,6 +24,8 @@ export interface Profile {
   suspended_reason: string | null;
   last_seen_at: string | null;
   created_at: string;
+  university?: string | null;
+  campus_visible?: boolean;
 }
 
 export interface Preferences {

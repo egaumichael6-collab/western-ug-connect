@@ -4,7 +4,7 @@ import { supabase, friendlyError } from "../../lib/supabase";
 import { usePageMeta } from "../../lib/usePageMeta";
 import { useAuth } from "../../context/AuthContext";
 import {
-  GOALS, GENDERS, INTEREST_SUGGESTIONS, LIFESTYLE_FIELDS, WESTERN_DISTRICTS, OTHER_DISTRICTS, ALL_DISTRICTS, type Goal, type Gender,
+  GOALS, GENDERS, INTEREST_SUGGESTIONS, LIFESTYLE_FIELDS, WESTERN_DISTRICTS, OTHER_DISTRICTS, ALL_DISTRICTS, UNIVERSITIES, type Goal, type Gender,
 } from "../../lib/config";
 import type { Preferences } from "../../lib/types";
 import { compressImage, validateImage } from "../../lib/images";
@@ -18,6 +18,7 @@ export default function EditProfile() {
   const [p, setP] = useState({
     display_name: "", district: "", town: "", bio: "", interests: [] as string[],
     relationship_goal: "" as Goal | "", lifestyle: {} as Record<string, string>,
+    university: "", campus_visible: false,
   });
   const [prefs, setPrefs] = useState<Omit<Preferences, "user_id">>({
     seeking_gender: null, min_age: 18, max_age: 60, preferred_districts: [], preferred_goal: null,
@@ -33,6 +34,7 @@ export default function EditProfile() {
     setP({
       display_name: profile.display_name, district: profile.district, town: profile.town ?? "", bio: profile.bio ?? "",
       interests: profile.interests ?? [], relationship_goal: profile.relationship_goal ?? "", lifestyle: profile.lifestyle ?? {},
+      university: profile.university ?? "", campus_visible: profile.campus_visible ?? false,
     });
     supabase.from("preferences").select("*").eq("user_id", profile.id).maybeSingle().then(({ data }) => {
       if (data) setPrefs({ seeking_gender: data.seeking_gender, min_age: data.min_age, max_age: data.max_age,
@@ -102,6 +104,8 @@ export default function EditProfile() {
       supabase.from("profiles").update({
         display_name: p.display_name.trim(), district: p.district, town: p.town.trim() || null, bio: p.bio.trim(),
         interests: p.interests, relationship_goal: p.relationship_goal, lifestyle,
+        university: p.university.trim().slice(0, 80) || null,
+        campus_visible: profile!.gender === "woman" && !!p.university.trim() && p.campus_visible,
       }).eq("id", user!.id),
       supabase.from("preferences").upsert({ user_id: user!.id, ...prefs }),
     ]);
@@ -194,6 +198,23 @@ export default function EditProfile() {
               ))}
             </div>
           </div>
+        </section>
+
+        <section className="card space-y-4 p-6">
+          <h2 className="text-lg font-bold">University <span className="text-sm font-normal text-slate-500">(optional)</span></h2>
+          <div><label className="label" htmlFor="ep-uni">University you attend</label>
+            <input id="ep-uni" className="input" list="ep-uni-list" maxLength={80} placeholder="e.g. Mbarara University of Science and Technology (MUST)"
+              value={p.university} onChange={(e) => setP({ ...p, university: e.target.value, campus_visible: e.target.value.trim() ? p.campus_visible : false })} />
+            <datalist id="ep-uni-list">{UNIVERSITIES.map((u) => <option key={u} value={u} />)}</datalist></div>
+          {profile.gender === "woman" ? (
+            <label className="flex items-start gap-3 rounded-xl bg-fuchsia-50 p-3 text-sm text-fuchsia-950 ring-1 ring-fuchsia-200">
+              <input type="checkbox" className="mt-0.5 h-4 w-4 accent-fuchsia-700" disabled={!p.university.trim()}
+                checked={p.campus_visible} onChange={(e) => setP({ ...p, campus_visible: e.target.checked })} />
+              <span><strong>Show me in JUICY UNIVERSITY BABES.</strong> Members with that package can find you by your university and see which university you attend. You must be 18 or older. Untick any time to hide.</span>
+            </label>
+          ) : (
+            <p className="text-xs text-slate-500">Your university is kept on your profile only. The JUICY UNIVERSITY BABES section lists ladies who choose to appear there.</p>
+          )}
         </section>
 
         <section className="card space-y-4 p-6">

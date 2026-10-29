@@ -6,7 +6,7 @@ import seo from "../data/seo-pages.json";
 
 const steps = [
   { n: "1", t: "Create your free profile", d: "Register with your email, verify it, and tell members who you are and what you are looking for." },
-  { n: "2", t: "Choose a membership", d: "Registration is free. To start browsing singles, sugar mummies and sugar daddies near you, subscribe to Silver, Gold or Diamond by MTN or Airtel Mobile Money." },
+  { n: "2", t: "Choose a membership", d: "Registration is free. To start browsing singles, sugar mummies and sugar daddies near you, subscribe to Silver, Gold, Juicy University Babes or Diamond by MTN or Airtel Mobile Money." },
   { n: "3", t: "Connect with intention", d: "Discover members, see why you were recommended, match, and message privately." },
 ];
 
@@ -86,7 +86,7 @@ export default function Home() {
       </section>
 
       <section className="container-page py-16">
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <div className="card p-8">
             <p className="text-xs font-bold tracking-[0.25em] text-gold-600">SILVER &amp; GOLD</p>
             <h2 className="mt-2 text-2xl font-bold">For genuine relationships</h2>
@@ -94,7 +94,13 @@ export default function Home() {
               marriage, dating or friendship.</p>
             <Link to="/memberships" className="btn-primary mt-6">See Silver &amp; Gold</Link>
           </div>
-          <div className="rounded-2xl bg-gradient-to-br from-plum-950 to-plum-800 p-8 text-white shadow-sm">
+          <div className="rounded-2xl bg-gradient-to-br from-pink-600 via-fuchsia-700 to-plum-900 p-8 text-white shadow-sm">
+            <p className="text-xs font-bold tracking-[0.25em] text-pink-200">🎓 JUICY UNIVERSITY BABES</p>
+            <h2 className="mt-2 text-2xl font-bold text-white">Meet university ladies near you</h2>
+            <p className="mt-2 text-pink-100">30 days for UGX 20,000. Browse ladies at a university near you — MUST, Bishop Stuart, Kabale, Mountains of the Moon, KIU, Makerere and more. Adults 18+ only.</p>
+            <Link to="/memberships#campus_30" className="btn mt-6 bg-white font-bold text-fuchsia-800 hover:bg-pink-50">See University Babes</Link>
+          </div>
+          <div className="rounded-2xl bg-gradient-to-br from-plum-950 to-plum-800 p-8 text-white shadow-sm md:col-span-2 lg:col-span-1">
             <p className="text-xs font-bold tracking-[0.25em] text-gold-300">DIAMOND</p>
             <h2 className="mt-2 text-2xl font-bold text-white">Find your dream sugar mummy or sugar daddy</h2>
             <p className="mt-2 text-plum-100">30 days for UGX 25,000. Browse sugar mummies and sugar daddies near you, match and chat privately. Adults 18+ only.</p>

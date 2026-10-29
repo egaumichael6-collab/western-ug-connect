@@ -26,6 +26,7 @@ export function friendlyError(err: unknown): string {
   const map: Record<string, string> = {
     membership_required: "This feature needs an active membership. Choose a package to continue.",
     diamond_required: "Diamond profiles are only available to Diamond members.",
+    campus_required: "The University section is only available to Juicy University Babes members.",
     profile_unavailable: "This profile is not available.",
     "Invalid login credentials": "Incorrect email or password.",
     "Email not confirmed": "Please confirm your email address first — check your inbox for the verification link.",
@@ -39,7 +40,7 @@ export function friendlyError(err: unknown): string {
 
 export function isMembershipError(err: unknown) {
   const m = err && typeof err === "object" && "message" in err ? String((err as { message: unknown }).message) : "";
-  return m.includes("membership_required") || m.includes("diamond_required");
+  return m.includes("membership_required") || m.includes("diamond_required") || m.includes("campus_required");
 }
 
 const urlCache = new Map<string, { url: string; exp: number }>();

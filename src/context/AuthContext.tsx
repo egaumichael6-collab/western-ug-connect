@@ -10,6 +10,7 @@ interface AuthState {
   user: User | null;
   profile: Profile | null;
   tier: Tier | null; // highest active membership tier, from the server
+  campus: boolean; // has an active Juicy University Babes membership
   role: "admin" | "moderator" | null;
   unread: number;
   refreshProfile: () => Promise<void>;
@@ -25,6 +26,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [tier, setTier] = useState<Tier | null>(null);
+  const [campus, setCampus] = useState(false);
   const [role, setRole] = useState<"admin" | "moderator" | null>(null);
   const [unread, setUnread] = useState(0);
   const userId = session?.user.id ?? null;
@@ -36,9 +38,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [userId]);
 
   const refreshTier = useCallback(async () => {
-    if (!userId) return setTier(null);
-    const { data } = await supabase.rpc("my_tier");
+    if (!userId) { setCampus(false); return setTier(null); }
+    const [{ data }, { data: c }] = await Promise.all([supabase.rpc("my_tier"), supabase.rpc("my_has_campus")]);
     setTier((data as Tier | null) ?? null);
+    setCampus(c === true);
   }, [userId]);
 
   const refreshUnread = useCallback(async () => {
@@ -60,20 +63,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!userId) {
-      setProfile(null); setTier(null); setRole(null); setUnread(0);
+      setProfile(null); setTier(null); setCampus(false); setRole(null); setUnread(0);
       return;
     }
     let cancelled = false;
     setLoading(true);
     (async () => {
-      const [{ data: p }, { data: t }, { data: r }] = await Promise.all([
+      const [{ data: p }, { data: t }, { data: r }, { data: c }] = await Promise.all([
         supabase.from("profiles").select("*").eq("id", userId).maybeSingle(),
         supabase.rpc("my_tier"),
         supabase.from("admin_roles").select("role").eq("user_id", userId).maybeSingle(),
+        supabase.rpc("my_has_campus"),
       ]);
       if (cancelled) return;
       setProfile((p as Profile) ?? null);
       setTier((t as Tier | null) ?? null);
+      setCampus(c === true);
       setRole((r?.role as "admin" | "moderator") ?? null);
       setLoading(false);
     })();
@@ -100,9 +105,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const value = useMemo<AuthState>(() => ({
-    loading, session, user: session?.user ?? null, profile, tier, role, unread,
+    loading, session, user: session?.user ?? null, profile, tier, campus, role, unread,
     refreshProfile, refreshTier, refreshUnread, signOut,
-  }), [loading, session, profile, tier, role, unread, refreshProfile, refreshTier, refreshUnread, signOut]);
+  }), [loading, session, profile, tier, campus, role, unread, refreshProfile, refreshTier, refreshUnread, signOut]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

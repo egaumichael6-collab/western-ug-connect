@@ -11,7 +11,7 @@ import type { MemberCard } from "../../lib/types";
 
 type Full = MemberCard & {
   photos: string[]; photos_hidden: boolean; lifestyle: Record<string, string>; is_matched: boolean;
-  conversation_id: string | null; match_id: string | null; they_liked_me: boolean; last_active: string | null; member_since: string;
+  conversation_id: string | null; match_id: string | null; they_liked_me: boolean; last_active: string | null; member_since: string; university?: string | null;
   request: { id: string; status: string; outgoing: boolean } | null; bio: string | null;
 };
 
@@ -89,6 +89,7 @@ export default function MemberProfile() {
             {m.online && <span className="h-3 w-3 rounded-full bg-emerald-500" title="Online now" />}
           </h1>
           <p className="mt-1 text-slate-600">{m.gender === "woman" ? "Woman" : "Man"} · {m.town ? `${m.town}, ` : ""}{m.district}</p>
+          {m.university && <p className="mt-1 inline-block rounded-full bg-fuchsia-50 px-2.5 py-0.5 text-xs font-semibold text-fuchsia-800 ring-1 ring-fuchsia-200">🎓 {m.university}</p>}
           <p className="mt-1 text-xs text-slate-500">
             {m.last_active && !m.online ? `Active ${timeAgo(m.last_active)} · ` : ""}Member since {fmtDate(m.member_since)}
           </p>
