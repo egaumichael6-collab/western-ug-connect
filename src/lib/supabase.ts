@@ -26,6 +26,7 @@ export function friendlyError(err: unknown): string {
   const map: Record<string, string> = {
     membership_required: "This feature needs an active membership. Choose a package to continue.",
     diamond_required: "Diamond profiles are only available to Diamond members.",
+    verification_required: "Verify your face first — it takes a minute. Open “Verify my face” from your account menu.",
     campus_required: "The University section is only available to Juicy University Babes members.",
     profile_unavailable: "This profile is not available.",
     "Invalid login credentials": "Incorrect email or password.",

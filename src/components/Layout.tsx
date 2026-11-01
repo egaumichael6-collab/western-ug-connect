@@ -55,7 +55,7 @@ function Navbar() {
                     {tier && <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase ${tier === "diamond" ? "bg-plum-900 text-gold-300" : tier === "campus" ? "bg-fuchsia-100 text-fuchsia-800" : "bg-gold-100 text-gold-700"}`}>{tier === "diamond" ? "Diamond" : tier === "campus" ? "Uni Babes" : "Member"}</span>}
                   </summary>
                   <div className="absolute right-0 mt-2 w-56 rounded-xl border border-plum-100 bg-white p-1.5 shadow-lg">
-                    {[["/app/profile/edit", "Edit profile"], ["/app/subscription", "My subscription"], ["/app/payments", "Payment history"],
+                    {[["/app/profile/edit", "Edit profile"], ["/app/verify", "Verify my face"], ["/app/subscription", "My subscription"], ["/app/payments", "Payment history"],
                       ["/app/settings", "Settings"], ["/memberships", "Memberships"], ["/safety", "Safety Centre"]].map(([to, l]) => (
                       <Link key={to} to={to} className="block rounded-lg px-3 py-2 text-sm hover:bg-plum-50">{l}</Link>
                     ))}
@@ -85,7 +85,7 @@ function Navbar() {
             {!user && links.map((l) => <NavLink key={l.to} to={l.to} className={linkCls}>{l.label}</NavLink>)}
             {user ? (
               <>
-                {[["/app/profile/edit", "Edit profile"], ["/app/subscription", "My subscription"], ["/app/payments", "Payment history"],
+                {[["/app/profile/edit", "Edit profile"], ["/app/verify", "Verify my face"], ["/app/subscription", "My subscription"], ["/app/payments", "Payment history"],
                   ["/app/settings", "Settings"], ["/memberships", "Memberships"], ["/safety", "Safety Centre"]].map(([to, l]) => (
                   <NavLink key={to} to={to} className={linkCls}>{l}</NavLink>
                 ))}

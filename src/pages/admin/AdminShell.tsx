@@ -21,6 +21,7 @@ export default function AdminShell({ title, children, action }: { title: string;
   const links = [
     { to: "/admin", label: "Overview", end: true, admin: false },
     { to: "/admin/payments", label: "Payment verification", admin: true },
+    { to: "/admin/verifications", label: "Face & photo checks", admin: false },
     { to: "/admin/members", label: "Members & reports", admin: false },
     { to: "/admin/memberships", label: "Memberships", admin: true },
   ].filter((l) => !l.admin || role === "admin");

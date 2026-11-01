@@ -112,9 +112,13 @@ export default function EditProfile() {
     setBusy(false);
     if (e1 || e2) return setMsg({ kind: "error", text: friendlyError(e1 ?? e2) });
     await refreshProfile();
-    const { data } = await supabase.from("profiles").select("profile_completed").eq("id", user!.id).single();
+    const { data } = await supabase.from("profiles").select("profile_completed, verification_status, photos").eq("id", user!.id).single();
+    const hasPhoto = (data?.photos?.length ?? 0) > 0;
+    if (hasPhoto && data?.verification_status !== "approved" && data?.verification_status !== "pending") return nav("/app/verify");
     if (data?.profile_completed && params.get("welcome")) return nav("/app/recommendations");
-    setMsg({ kind: "success", text: data?.profile_completed ? "Profile saved." : "Saved. Add at least one photo to make your profile visible to members." });
+    setMsg({ kind: "success", text: data?.profile_completed ? "Profile saved."
+      : !hasPhoto ? "Saved. Add at least one real photo of yourself, then verify your face to become visible."
+      : "Saved. Your profile becomes visible once your face check is approved." });
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -129,12 +133,16 @@ export default function EditProfile() {
 
       <section className="card mb-6 p-6">
         <h2 className="text-lg font-bold">Photos <span className="text-sm font-normal text-slate-500">({profile.photos.length}/6)</span></h2>
-        <p className="mt-1 text-sm text-slate-600">Use clear, recent photos of yourself only. The first photo is your main picture. Location data is removed automatically.</p>
+        <p className="mt-1 text-sm text-slate-600">Use clear, recent, <strong>real</strong> photos of yourself only — your face must be visible. No celebrities, cartoons, group photos or pictures of other people. The first photo is your main picture. Location data is removed automatically.</p>
+        <p className="mt-2 rounded-xl bg-plum-50 p-3 text-xs text-plum-900">Our team checks every photo against your live face check. Profiles without real photos are not shown, and new photos stay hidden from members until approved.</p>
         <div className="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-6">
           {profile.photos.map((ph, i) => (
             <div key={ph} className="group relative">
               <Avatar path={ph} name={profile.display_name} size={100} rounded="rounded-xl" />
               {i === 0 && <span className="absolute left-1 top-1 rounded bg-gold-400 px-1.5 text-[10px] font-bold text-plum-950">MAIN</span>}
+              {profile.verification_status === "approved" && !(profile.approved_photos ?? []).includes(ph) && (
+                <span className="absolute bottom-6 left-1 rounded bg-sky-600 px-1.5 text-[10px] font-bold text-white">IN REVIEW</span>
+              )}
               <div className="mt-1 flex gap-1">
                 {i > 0 && <button type="button" onClick={() => makeMain(ph)} className="text-[11px] text-plum-800 underline">Main</button>}
                 <button type="button" onClick={() => removePhoto(ph)} className="text-[11px] text-red-700 underline">Remove</button>

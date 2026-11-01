@@ -38,6 +38,7 @@ const router = createBrowserRouter([
         element: <RequireAuth />,
         children: [
           { path: "profile/edit", element: l(() => import("./pages/app/EditProfile")) },
+          { path: "verify", element: l(() => import("./pages/app/Verify")) },
           { path: "discover", element: l(() => import("./pages/app/Discover")) },
           { path: "recommendations", element: l(() => import("./pages/app/Recommendations")) },
           { path: "likes", element: l(() => import("./pages/app/Likes")) },
@@ -61,6 +62,7 @@ const router = createBrowserRouter([
           { index: true, element: l(() => import("./pages/admin/AdminDashboard")) },
           { path: "payments", element: l(() => import("./pages/admin/AdminPayments")) },
           { path: "members", element: l(() => import("./pages/admin/AdminMembers")) },
+          { path: "verifications", element: l(() => import("./pages/admin/AdminVerifications")) },
           { path: "memberships", element: l(() => import("./pages/admin/AdminMemberships")) },
         ],
       },

@@ -90,14 +90,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const channel = supabase
       .channel(`notif-${userId}`)
       .on("postgres_changes", { event: "*", schema: "public", table: "notifications", filter: `user_id=eq.${userId}` },
-        () => { refreshUnread(); refreshTier(); })
+        () => { refreshUnread(); refreshTier(); refreshProfile(); })
       .subscribe();
     return () => {
       cancelled = true;
       window.clearInterval(presence);
       supabase.removeChannel(channel);
     };
-  }, [userId, refreshUnread, refreshTier]);
+  }, [userId, refreshUnread, refreshTier, refreshProfile]);
 
   const signOut = useCallback(async () => {
     await supabase.auth.signOut();
