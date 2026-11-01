@@ -20,7 +20,7 @@ const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replac
 const a = (href, text) => `<a href="${href}">${esc(text)}</a>`;
 const townLinks = (towns) => `<ul>${towns.map((t) => `<li>${a(`/dating/${t.slug}`, `Dating in ${t.name}`)}</li>`).join("")}</ul>`;
 const nav = `<nav aria-label="Main">${a("/", "Home")} · ${a("/dating-in-uganda", "Dating in Uganda")} · ${a("/sugar-mummy-uganda", "Sugar mummy")} · ${a("/sugar-daddy-uganda", "Sugar daddy")} · ${a("/memberships", "Memberships")} · ${a("/about", "About")} · ${a("/safety", "Safety")} · ${a("/faq", "FAQ")} · ${a("/register", "Join free")}</nav>`;
-const prices = `<p>Free to join. Register free, then subscribe to start browsing: Silver 14 days UGX 10,000 · Gold 30 days UGX 15,000 · Juicy University Babes 30 days UGX 20,000 (university ladies near you) · Diamond 30 days UGX 25,000 (sugar mummies &amp; sugar daddies) — paid by MTN or Airtel Mobile Money to +256 794 273 661.</p>`;
+const prices = `<p>Free to join. Register free, then subscribe to start browsing: Silver 7 days UGX 4,000 · Gold 14 days UGX 7,000 · Juicy University Babes 30 days UGX 10,000 (university ladies near you) · Diamond 30 days UGX 15,000 (sugar mummies &amp; sugar daddies) — paid by MTN or Airtel Mobile Money to +256 794 273 661.</p>`;
 
 const simple = (path, title, description, h1) => ({
   path, title, description,
@@ -43,7 +43,7 @@ ${prices}<h2>Find singles near you</h2>${townLinks(seo.towns)}`,
     ],
   },
   simple("/about", "About us", "WESTERN UG CONNECT is a Ugandan dating community for single adults in Western Uganda and across the country.", "Love that feels like home"),
-  simple("/memberships", "Membership packages", "Silver 14 days UGX 10,000 · Gold 30 days UGX 15,000 · Juicy University Babes 30 days UGX 20,000 · Diamond 30 days UGX 25,000 — find singles, university ladies and your dream sugar mummy or sugar daddy. Pay by MTN or Airtel Mobile Money.", "Choose your journey"),
+  simple("/memberships", "Membership packages", "Silver 7 days UGX 4,000 · Gold 14 days UGX 7,000 · Juicy University Babes 30 days UGX 10,000 · Diamond 30 days UGX 15,000 — find singles, university ladies and your dream sugar mummy or sugar daddy. Pay by MTN or Airtel Mobile Money.", "Choose your journey"),
   simple("/safety", "Safety Centre", "Dating safety advice for WESTERN UG CONNECT members: avoid romance scams, protect your money and meet safely.", "Safety Centre"),
   simple("/faq", "Frequently asked questions", "Answers about joining WESTERN UG CONNECT, mobile money payments, memberships, privacy and safety.", "Frequently asked questions"),
   simple("/contact", "Contact us", "Get in touch with the WESTERN UG CONNECT team about your account, payments or safety concerns.", "Contact us"),
@@ -73,7 +73,7 @@ ${seo.hub.sections.map((s) => `<h2>${esc(s.h2)}</h2>${s.text ? `<p>${esc(s.text)
 <h2>How to meet singles in ${esc(t.name)}</h2><ul>
 <li>Create your free profile and set your district to ${esc(t.name)} so nearby members can find you.</li>
 <li>Add a clear, recent photo and say what you are looking for — marriage, a long-term relationship, dating or friendship.</li>
-<li>Registration is free. To start browsing singles near you, subscribe to Silver (UGX 10,000) or Gold (UGX 15,000) — or Diamond (UGX 25,000) to find your dream sugar mummy or sugar daddy in ${esc(t.name)}.</li>
+<li>Registration is free. To start browsing singles near you, subscribe to Silver (UGX 4,000) or Gold (UGX 7,000) — or Diamond (UGX 15,000) to find your dream sugar mummy or sugar daddy in ${esc(t.name)}.</li>
 <li>Chat on the site first, then meet in a busy public place in ${esc(t.name)} and tell a friend where you are going.</li></ul>
 <h2>Safe dating in ${esc(t.name)}</h2><p>Never send money, airtime or mobile money to someone you met online, and never share your PIN or verification codes.</p>
 ${nearby.length ? `<h2>Dating near ${esc(t.name)}</h2>${townLinks(nearby)}` : ""}${prices}`,

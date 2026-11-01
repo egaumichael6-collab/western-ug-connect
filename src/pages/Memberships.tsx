@@ -6,7 +6,7 @@ import { PAYMENT_NUMBER_DISPLAY, ugx, PLAN_LABELS, PLAN_IMAGES, tierLabel } from
 import { Alert, Spinner } from "../components/ui";
 
 export default function Memberships() {
-  usePageMeta("Membership packages", "Silver 14 days UGX 10,000 · Gold 30 days UGX 15,000 · Juicy University Babes 30 days UGX 20,000 · Diamond 30 days UGX 25,000 — find singles, university ladies and your dream sugar mummy or sugar daddy. Pay by MTN or Airtel Mobile Money.");
+  usePageMeta("Membership packages", "Silver 7 days UGX 4,000 · Gold 14 days UGX 7,000 · Juicy University Babes 30 days UGX 10,000 · Diamond 30 days UGX 15,000 — find singles, university ladies and your dream sugar mummy or sugar daddy. Pay by MTN or Airtel Mobile Money.");
   const { packages, error } = usePackages();
   const { user, tier } = useAuth();
 

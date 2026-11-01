@@ -12,7 +12,7 @@ export default function Terms() {
       <p>Give accurate information, use your own photos, keep your password secret, and have only one account. You are responsible for activity on your account.</p>
       <h2>3. Memberships and payment</h2>
       <ul>
-        <li>Silver 14 days: UGX 10,000. Gold 30 days: UGX 15,000. Diamond 30 days: UGX 25,000.</li>
+        <li>Silver 7 days: UGX 4,000. Gold 14 days: UGX 7,000. Juicy University Babes 30 days: UGX 10,000. Diamond 30 days: UGX 15,000.</li>
         <li>Pay only by mobile money to {PAYMENT_NUMBER_DISPLAY}, then submit your transaction ID on the site.</li>
         <li>A membership begins only after we verify the payment, and lasts for the stated number of days from activation. It ends automatically; there is no automatic renewal.</li>
         <li>Submitting false payment information or a reused transaction ID is fraud and leads to permanent removal.</li>

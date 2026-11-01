@@ -42,7 +42,7 @@ export default function Home() {
               <Link to={user ? "/app/recommendations" : "/register?next=/app/recommendations"} className="btn px-6 py-3 text-base border border-white/40 text-white hover:bg-white/10">Find Your Match</Link>
               <Link to="/memberships" className="btn px-6 py-3 text-base text-gold-300 underline-offset-4 hover:underline">Explore Memberships</Link>
             </div>
-            <p className="mt-6 text-sm text-plum-200">18+ only · Free to register · Memberships from UGX 10,000</p>
+            <p className="mt-6 text-sm text-plum-200">18+ only · Free to register · Memberships from UGX 4,000</p>
             <p className="mt-3 max-w-lg rounded-xl bg-white/10 px-4 py-3 text-sm text-white ring-1 ring-white/20">Register for free, then <strong className="text-gold-300">subscribe</strong> to start browsing and seeing singles, sugar mummies and sugar daddies near you.</p>
           </div>
           <div className="mx-auto w-full max-w-md md:max-w-none">
@@ -90,20 +90,20 @@ export default function Home() {
           <div className="card p-8">
             <p className="text-xs font-bold tracking-[0.25em] text-gold-600">SILVER &amp; GOLD</p>
             <h2 className="mt-2 text-2xl font-bold">For genuine relationships</h2>
-            <p className="mt-2 text-slate-600">Silver: 14 days for UGX 10,000. Gold: 30 days for UGX 15,000. Discover, match and message members looking for love,
+            <p className="mt-2 text-slate-600">Silver: 7 days for UGX 4,000. Gold: 14 days for UGX 7,000. Discover, match and message members looking for love,
               marriage, dating or friendship.</p>
             <Link to="/memberships" className="btn-primary mt-6">See Silver &amp; Gold</Link>
           </div>
           <div className="rounded-2xl bg-gradient-to-br from-pink-600 via-fuchsia-700 to-plum-900 p-8 text-white shadow-sm">
             <p className="text-xs font-bold tracking-[0.25em] text-pink-200">🎓 JUICY UNIVERSITY BABES</p>
             <h2 className="mt-2 text-2xl font-bold text-white">Meet university ladies near you</h2>
-            <p className="mt-2 text-pink-100">30 days for UGX 20,000. Browse ladies at a university near you — MUST, Bishop Stuart, Kabale, Mountains of the Moon, KIU, Makerere and more. Adults 18+ only.</p>
+            <p className="mt-2 text-pink-100">30 days for UGX 10,000. Browse ladies at a university near you — MUST, Bishop Stuart, Kabale, Mountains of the Moon, KIU, Makerere and more. Adults 18+ only.</p>
             <Link to="/memberships#campus_30" className="btn mt-6 bg-white font-bold text-fuchsia-800 hover:bg-pink-50">See University Babes</Link>
           </div>
           <div className="rounded-2xl bg-gradient-to-br from-plum-950 to-plum-800 p-8 text-white shadow-sm md:col-span-2 lg:col-span-1">
             <p className="text-xs font-bold tracking-[0.25em] text-gold-300">DIAMOND</p>
             <h2 className="mt-2 text-2xl font-bold text-white">Find your dream sugar mummy or sugar daddy</h2>
-            <p className="mt-2 text-plum-100">30 days for UGX 25,000. Browse sugar mummies and sugar daddies near you, match and chat privately. Adults 18+ only.</p>
+            <p className="mt-2 text-plum-100">30 days for UGX 15,000. Browse sugar mummies and sugar daddies near you, match and chat privately. Adults 18+ only.</p>
             <div className="mt-6 flex flex-wrap gap-3"><Link to="/memberships" className="btn-gold">See Diamond</Link><Link to="/sugar-mummy-uganda" className="btn border border-white/40 text-white hover:bg-white/10">Sugar mummy</Link><Link to="/sugar-daddy-uganda" className="btn border border-white/40 text-white hover:bg-white/10">Sugar daddy</Link></div>
           </div>
         </div>

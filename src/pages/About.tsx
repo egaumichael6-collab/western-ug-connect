@@ -26,7 +26,7 @@ export default function About() {
         </ul>
         <h2>Our memberships</h2>
         <p>
-          <strong>Silver</strong> (14 days) and <strong>Gold</strong> (30 days) are for members looking for marriage, a long-term relationship, dating or friendship.
+          <strong>Silver</strong> (7 days) and <strong>Gold</strong> (14 days) are for members looking for marriage, a long-term relationship, dating or friendship.
           <strong> Diamond</strong> is where you find your dream sugar mummy or sugar daddy. Diamond profiles are only shown to other Diamond members, and the same community rules apply to everyone.
         </p>
       </div>

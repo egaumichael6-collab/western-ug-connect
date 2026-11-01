@@ -29,7 +29,7 @@ function JoinBox({ place }: { place: string }) {
     <div className="mt-10 rounded-2xl bg-gradient-to-br from-plum-950 to-plum-800 p-8 text-white">
       <h2 className="text-2xl font-bold text-white">Ready to meet someone in {place}?</h2>
       <p className="mt-2 text-plum-100">
-        Joining is free. Memberships start at UGX 10,000 for 14 days, paid by MTN or Airtel Mobile Money to {PAYMENT_NUMBER_DISPLAY}.
+        Joining is free. Memberships start at UGX 4,000 for 7 days, paid by MTN or Airtel Mobile Money to {PAYMENT_NUMBER_DISPLAY}.
       </p>
       <div className="mt-6 flex flex-wrap gap-3">
         <Link to="/register" className="btn-gold">Join free</Link>
@@ -86,7 +86,7 @@ export function DatingTown() {
         <ul>
           <li>Create your free profile and set your district to {t.name} so nearby members can find you.</li>
           <li>Add a clear, recent photo and say what you are looking for — marriage, a long-term relationship, dating or friendship.</li>
-          <li>Registration is free. To start browsing singles near you, subscribe to Silver (UGX 10,000) or Gold (UGX 15,000) — or Diamond (UGX 25,000) to find your dream sugar mummy or sugar daddy in {t.name}.</li>
+          <li>Registration is free. To start browsing singles near you, subscribe to Silver (UGX 4,000) or Gold (UGX 7,000) — or Diamond (UGX 15,000) to find your dream sugar mummy or sugar daddy in {t.name}.</li>
           <li>Chat on the site first, then meet in a busy public place in {t.name} and tell a friend where you are going.</li>
         </ul>
         <h2>Safe dating in {t.name}</h2>

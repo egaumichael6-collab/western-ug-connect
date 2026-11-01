@@ -61,7 +61,7 @@ export function MembershipPrompt({ diamond = false, campus = false, count }: { d
               : `${count} university member${count === 1 ? "" : "s"} currently match${count === 1 ? "es" : ""}.`}
           </p>
         )}
-        <p className="mx-auto mt-3 max-w-md text-sm text-pink-100">Juicy University Babes: UGX 20,000 for 30 days. Pay by MTN or Airtel Mobile Money. Adults 18+ only.</p>
+        <p className="mx-auto mt-3 max-w-md text-sm text-pink-100">Juicy University Babes: UGX 10,000 for 30 days. Pay by MTN or Airtel Mobile Money. Adults 18+ only.</p>
         <Link to="/memberships#campus_30" className="btn mt-6 bg-white px-6 py-2.5 font-bold text-fuchsia-800 hover:bg-pink-50">Subscribe now</Link>
       </div>
     </div>
@@ -80,7 +80,7 @@ export function MembershipPrompt({ diamond = false, campus = false, count }: { d
               : `${count} real member${count === 1 ? "" : "s"} currently match${count === 1 ? "es" : ""} these filters.`}
           </p>
         )}
-        <p className="mx-auto mt-3 max-w-md text-sm text-plum-100">{diamond ? "Diamond: UGX 25,000 for 30 days." : "Silver: UGX 10,000 for 14 days · Gold: UGX 15,000 for 30 days · Juicy University Babes: UGX 20,000 for 30 days · Diamond: UGX 25,000 for 30 days."} Pay by MTN or Airtel Mobile Money.</p>
+        <p className="mx-auto mt-3 max-w-md text-sm text-plum-100">{diamond ? "Diamond: UGX 15,000 for 30 days." : "Silver: UGX 4,000 for 7 days · Gold: UGX 7,000 for 14 days · Juicy University Babes: UGX 10,000 for 30 days · Diamond: UGX 15,000 for 30 days."} Pay by MTN or Airtel Mobile Money.</p>
         <Link to="/memberships" className="btn-gold mt-6">Subscribe now</Link>
       </div>
     </div>
