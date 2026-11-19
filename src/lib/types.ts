@@ -26,9 +26,6 @@ export interface Profile {
   created_at: string;
   university?: string | null;
   campus_visible?: boolean;
-  verification_status?: "unverified" | "pending" | "approved" | "rejected";
-  verification_note?: string | null;
-  approved_photos?: string[];
 }
 
 export interface Preferences {
