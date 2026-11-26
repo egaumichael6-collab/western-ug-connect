@@ -6,6 +6,7 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 const FLAG = "wugc_app_installed";
+const PENDING = "wugc_install_to_report";
 let deferred: BeforeInstallPromptEvent | null = null;
 const listeners = new Set<() => void>();
 const emit = () => listeners.forEach((f) => f());
@@ -34,6 +35,7 @@ if (typeof window !== "undefined") {
   window.addEventListener("appinstalled", () => {
     deferred = null;
     store.set(FLAG, "1");
+    store.set(PENDING, "1");
     emit();
   });
   if ("serviceWorker" in navigator) {
@@ -56,7 +58,7 @@ export async function promptInstall(): Promise<boolean> {
   await e.prompt();
   const { outcome } = await e.userChoice;
   deferred = null;
-  if (outcome === "accepted") store.set(FLAG, "1");
+  if (outcome === "accepted") { store.set(FLAG, "1"); store.set(PENDING, "1"); }
   emit();
   return outcome === "accepted";
 }
@@ -88,4 +90,13 @@ export function detectPlatform(): Platform {
 export function openInChromeUrl(): string {
   const { host, pathname, search } = window.location;
   return `intent://${host}${pathname}${search}#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(window.location.href)};end`;
+}
+
+/** For the admin "App installs" list: an install on this phone not yet reported for a signed-in member. */
+export const hasPendingInstall = () => store.get(PENDING) === "1";
+export const clearPendingInstall = () => store.del(PENDING);
+
+export function simplePlatform(): "android" | "ios" | "desktop" {
+  const p = detectPlatform();
+  return p.startsWith("ios") ? "ios" : p.startsWith("android") ? "android" : "desktop";
 }

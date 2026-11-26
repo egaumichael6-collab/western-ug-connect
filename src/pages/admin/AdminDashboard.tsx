@@ -14,6 +14,10 @@ interface Overview {
   recent_registrations: { id: string; display_name: string; district: string; gender: string; created_at: string; profile_completed: boolean }[];
 }
 interface Audit { id: number; action: string; entity_type: string; entity_id: string; actor_email: string | null; created_at: string; details: Record<string, unknown> }
+interface AppInstalls {
+  total: number; android: number; ios: number; last_7_days: number;
+  members: { id: string; display_name: string; gender: string; district: string; platform: string; installed_at: string; last_opened_at: string | null; opens: number }[];
+}
 interface ContactMsg { id: string; name: string; email: string; subject: string; message: string; created_at: string; status: string }
 
 export default function AdminDashboard() {
@@ -22,12 +26,14 @@ export default function AdminDashboard() {
   const [audit, setAudit] = useState<Audit[]>([]);
   const [contacts, setContacts] = useState<ContactMsg[]>([]);
   const [err, setErr] = useState<string | null>(null);
+  const [apps, setApps] = useState<AppInstalls | null>(null);
 
   const loadContacts = () => supabase.rpc("admin_contact_messages", { p_status: "new" }).then(({ data }) => setContacts((data ?? []) as ContactMsg[]));
   useEffect(() => {
     supabase.rpc("admin_overview").then(({ data, error }) => { if (error) setErr(friendlyError(error)); setO(data as Overview); });
     if (role === "admin") supabase.rpc("admin_audit_log", { p_limit: 25 }).then(({ data }) => setAudit((data ?? []) as Audit[]));
     loadContacts();
+    supabase.rpc("admin_app_installs", { p_limit: 300 }).then(({ data }) => { if (data) setApps(data as AppInstalls); });
   }, [role]);
 
   if (err) return <AdminShell title="Overview"><Alert kind="error">{err}</Alert></AdminShell>;
@@ -64,6 +70,33 @@ export default function AdminDashboard() {
           return link && (role === "admin" || !link.includes("payments")) ? <Link key={label} to={link}>{body}</Link> : <div key={label}>{body}</div>;
         })}
       </div>
+
+      <section className="card mt-8 p-5">
+        <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
+          <h2 className="text-lg font-bold">📲 Members who installed the app {apps && <span className="text-plum-700">({apps.total})</span>}</h2>
+          {apps && <p className="text-xs text-slate-500">{apps.android} Android · {apps.ios} iPhone · {apps.total - apps.android - apps.ios} computer/other · {apps.last_7_days} in the last 7 days</p>}
+        </div>
+        {!apps ? <p className="text-sm text-slate-500">Loading…</p> : apps.members.length === 0 ? (
+          <p className="text-sm text-slate-500">No members have installed the app yet. Members appear here when they install it, or open it from their home screen, while signed in.</p>
+        ) : (
+          <div className="max-h-[28rem] overflow-auto">
+            <table className="w-full text-left text-sm">
+              <thead className="sticky top-0 bg-white text-xs uppercase text-slate-500"><tr><th className="py-2 pr-3">Member</th><th className="pr-3">Phone type</th><th className="pr-3">Installed</th><th className="pr-3">Last opened app</th><th className="text-right">Times opened</th></tr></thead>
+              <tbody className="divide-y divide-plum-50">
+                {apps.members.map((m) => (
+                  <tr key={m.id}>
+                    <td className="py-2 pr-3"><strong>{m.display_name}</strong><span className="block text-xs text-slate-500">{m.gender} · {m.district}</span></td>
+                    <td className="pr-3"><span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${m.platform === "android" ? "bg-green-100 text-green-800" : m.platform === "ios" ? "bg-slate-100 text-slate-800" : "bg-plum-50 text-plum-800"}`}>{m.platform === "android" ? "Android" : m.platform === "ios" ? "iPhone" : m.platform === "desktop" ? "Computer" : "Unknown"}</span></td>
+                    <td className="pr-3 whitespace-nowrap text-xs">{fmtDateTime(m.installed_at)}</td>
+                    <td className="pr-3 whitespace-nowrap text-xs">{m.last_opened_at ? fmtDateTime(m.last_opened_at) : "—"}</td>
+                    <td className="text-right">{m.opens}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
         <section className="card p-5">
