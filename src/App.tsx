@@ -1,4 +1,4 @@
-import { lazy, Suspense, type ComponentType } from "react";
+import { lazy, Suspense, useEffect, useState, type ComponentType } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout";
 import { RequireAuth, RequireStaff, GuestOnly } from "./components/Guards";
@@ -6,10 +6,40 @@ import { Spinner } from "./components/ui";
 import { ErrorPage } from "./pages/ErrorPages";
 import Home from "./pages/Home";
 
-const l = (f: () => Promise<{ default: ComponentType }>) => {
-  const C = lazy(f);
-  return <Suspense fallback={<Spinner />}><C /></Suspense>;
-};
+type Mod = { default: ComponentType };
+const preloaders: Array<() => Promise<unknown>> = [];
+
+/**
+ * A page that loads in the background ahead of time. Once its code is downloaded
+ * it opens instantly (no loading spinner) when someone taps a link to it.
+ */
+function makePage(f: () => Promise<Mod>, preload: boolean) {
+  let mod: Mod | undefined;
+  let p: Promise<Mod> | undefined;
+  const load = () => (p ??= f().then((m) => (mod = m)).catch((e) => { p = undefined; throw e; }));
+  if (preload) preloaders.push(load);
+  const Lazy = lazy(load);
+  function Page() {
+    const [ready] = useState(() => mod);
+    if (ready) { const C = ready.default; return <C />; }
+    return <Suspense fallback={<Spinner />}><Lazy /></Suspense>;
+  }
+  return <Page />;
+}
+const l = (f: () => Promise<Mod>) => makePage(f, true);
+const la = (f: () => Promise<Mod>) => makePage(f, false); // admin pages: only staff need them
+
+/** Download every page's code quietly after the first screen has loaded. */
+function usePreloadPages() {
+  useEffect(() => {
+    const conn = (navigator as unknown as { connection?: { saveData?: boolean } }).connection;
+    if (conn?.saveData) return;
+    const run = () => { preloaders.reduce((chain, f) => chain.then(() => f().catch(() => undefined)), Promise.resolve() as Promise<unknown>); };
+    const w = window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number };
+    if (w.requestIdleCallback) w.requestIdleCallback(run, { timeout: 2500 });
+    else setTimeout(run, 1200);
+  }, []);
+}
 
 const router = createBrowserRouter([
   {
@@ -53,15 +83,15 @@ const router = createBrowserRouter([
           { path: "notifications", element: l(() => import("./pages/app/Notifications")) },
         ],
       },
-      { path: "/admin/login", element: l(() => import("./pages/admin/AdminLogin")) },
+      { path: "/admin/login", element: la(() => import("./pages/admin/AdminLogin")) },
       {
         path: "/admin",
         element: <RequireStaff />,
         children: [
-          { index: true, element: l(() => import("./pages/admin/AdminDashboard")) },
-          { path: "payments", element: l(() => import("./pages/admin/AdminPayments")) },
-          { path: "members", element: l(() => import("./pages/admin/AdminMembers")) },
-          { path: "memberships", element: l(() => import("./pages/admin/AdminMemberships")) },
+          { index: true, element: la(() => import("./pages/admin/AdminDashboard")) },
+          { path: "payments", element: la(() => import("./pages/admin/AdminPayments")) },
+          { path: "members", element: la(() => import("./pages/admin/AdminMembers")) },
+          { path: "memberships", element: la(() => import("./pages/admin/AdminMemberships")) },
         ],
       },
       { path: "*", element: l(() => import("./pages/ErrorPages").then((m) => ({ default: m.NotFound }))) },
@@ -70,5 +100,6 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
+  usePreloadPages();
   return <RouterProvider router={router} />;
 }

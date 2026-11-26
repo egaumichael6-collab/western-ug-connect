@@ -29,7 +29,7 @@
 }
 
 @layer base {
-  html { -webkit-tap-highlight-color: transparent; }
+  html { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
   body { @apply bg-plum-50/40 text-slate-800 antialiased; font-family: var(--font-sans); }
   h1, h2, h3 { font-family: var(--font-display); @apply text-plum-950; }
   :focus-visible { @apply outline-2 outline-offset-2 outline-gold-500; }

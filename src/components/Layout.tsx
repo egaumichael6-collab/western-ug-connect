@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, Outlet, ScrollRestoration, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { Logo } from "./Logo";
 import InstallApp from "./InstallApp";
@@ -190,6 +190,7 @@ export default function Layout() {
         </div>
       )}
       <main id="main" className="flex-1"><Outlet /></main>
+      <ScrollRestoration />
       <Footer />
       {user && <BottomNav />}
       <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" aria-label={`Chat with us on WhatsApp ${WHATSAPP_DISPLAY}`}
