@@ -33,7 +33,6 @@ export default function Contact() {
           <p><span className="font-semibold">Payments number (Mobile Money):</span> {PAYMENT_NUMBER_DISPLAY}</p>
           <p><span className="font-semibold">Help on WhatsApp:</span> <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="font-semibold text-plum-800 underline">{WHATSAPP_DISPLAY}</a></p>
           <p className="text-slate-600">For payment questions include your transaction ID. Never send us your PIN or password.</p>
-          <p className="text-slate-600">Emergency? Call the Uganda Police on 999 or 112.</p>
         </div>
       </div>
       <form onSubmit={submit} className="card space-y-4 p-6" noValidate={false}>

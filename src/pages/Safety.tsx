@@ -49,7 +49,7 @@ export default function Safety() {
             <li>Any arrangement must be legal, between consenting adults, and free of pressure.</li>
             <li>Offering or requesting sex in exchange for money is prohibited and will lead to removal.</li>
             <li>Never pay "deposits", "registration fees" or "allowances in advance" to someone you have not met — this is the most common sugar mummy / sugar daddy scam.</li>
-            <li>Never let anyone take your ID, phone or documents, or control where you live or travel. If someone does, contact the Uganda Police on 999 or 112.</li>
+            <li>Never let anyone take your ID, phone or documents, or control where you live or travel. If someone does, report them to us straight away.</li>
           </ul>
         </div>
       </div>
@@ -57,8 +57,7 @@ export default function Safety() {
       <div className="mt-10 card p-6">
         <h2 className="text-xl font-bold">Need help?</h2>
         <p className="mt-2 text-sm text-slate-700">
-          Use <strong>Report</strong> on any profile or message, or <strong>Block</strong> to stop someone contacting you. In an emergency call
-          <strong> 999</strong> or <strong>112</strong>. For child protection concerns call the Sauti Child Helpline on <strong>116</strong>.
+          Use <strong>Report</strong> on any profile or message, or <strong>Block</strong> to stop someone contacting you. For child protection concerns call the Sauti Child Helpline on <strong>116</strong>.
         </p>
         <div className="mt-4 flex flex-wrap gap-3">
           <Link to="/guidelines" className="btn-outline">Community guidelines</Link>
