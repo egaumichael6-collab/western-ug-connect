@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { Logo } from "./Logo";
+import InstallApp from "./InstallApp";
 import { PAYMENT_NUMBER_DISPLAY, WHATSAPP_DISPLAY, whatsappLink } from "../lib/config";
 import seo from "../data/seo-pages.json";
 
@@ -181,6 +182,7 @@ export default function Layout() {
   const { profile, user } = useAuth();
   return (
     <div className={`flex min-h-screen flex-col ${user ? "pb-16 lg:pb-0" : ""}`}>
+      <InstallApp />
       <Navbar />
       {profile?.is_suspended && (
         <div className="bg-red-700 px-4 py-2 text-center text-sm text-white">

@@ -1,0 +1,26 @@
+{
+  "id": "/",
+  "name": "WESTERN UG CONNECT",
+  "short_name": "WUG Connect",
+  "description": "Dating for singles in Western Uganda and across Uganda.",
+  "start_url": "/?source=app",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#3b0764",
+  "lang": "en",
+  "categories": ["social", "lifestyle"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "related_applications": [
+    { "platform": "webapp", "url": "https://westernugconnect.com/manifest.webmanifest" }
+  ],
+  "shortcuts": [
+    { "name": "Messages", "url": "/app/messages", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Discover", "url": "/app/discover", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
