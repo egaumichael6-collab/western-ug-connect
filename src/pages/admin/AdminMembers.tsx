@@ -19,7 +19,7 @@ interface ReportRow {
 }
 type Detail = MemberRow & {
   bio: string | null; town: string | null; photos: string[]; date_of_birth: string; interests: string[]; blocked_by_count: number;
-  subscriptions: { id: string; tier: string; package_code: string; starts_at: string; expires_at: string; status: string }[];
+  subscriptions: { id: string; tier: string; package_code: string; starts_at: string; expires_at: string; status: string; source?: string; grant_note?: string | null }[];
   payments: { id: string; package_name: string; amount_ugx: number; status: string; transaction_ref: string; created_at: string }[];
 };
 
@@ -118,6 +118,8 @@ function MemberDetail({ id, onClose, onChanged }: { id: string; onClose: () => v
   const [reason, setReason] = useState("");
   const [act, setAct] = useState({ pkg: "bronze_30", network: "mtn", ref: "", phone: "" });
   const [actMsg, setActMsg] = useState<string | null>(null);
+  const [gift, setGift] = useState({ pkg: "bronze_30", days: "", note: "" });
+  const [giftMsg, setGiftMsg] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
   const load = useCallback(() => {
     supabase.rpc("admin_get_member", { p_id: id }).then(({ data, error }) => { if (error) setErr(friendlyError(error)); setD(data as Detail); });
@@ -146,6 +148,29 @@ function MemberDetail({ id, onClose, onChanged }: { id: string; onClose: () => v
     load(); onChanged();
   }
 
+  async function giveFree() {
+    const pkg = packages?.find((p) => p.code === gift.pkg);
+    if (!pkg) return;
+    const days = gift.days.trim() ? Number(gift.days) : pkg.duration_days;
+    if (!Number.isInteger(days) || days < 1 || days > 365) return setErr("Days must be a whole number from 1 to 365.");
+    if (!window.confirm(`Give ${d?.display_name} FREE access to ${pkg.name} for ${days} day(s)?\n\nNo payment is needed. The member is notified.`)) return;
+    setErr(null); setGiftMsg(null);
+    const { data, error } = await supabase.rpc("admin_grant_free_membership", {
+      p_user: id, p_package: pkg.code, p_days: days, p_note: gift.note.trim() || null,
+    });
+    if (error) return setErr(friendlyError(error));
+    setGiftMsg(`Free access given until ${fmtDateTime((data as { expires_at: string }).expires_at)}.`);
+    setGift({ ...gift, days: "", note: "" });
+    load(); onChanged();
+  }
+
+  async function stopFree(subId: string) {
+    if (!window.confirm("End this free access now? The member will be notified.")) return;
+    const { error } = await supabase.rpc("admin_revoke_free_membership", { p_sub: subId, p_note: null });
+    if (error) return setErr(friendlyError(error));
+    load(); onChanged();
+  }
+
   return (
     <Modal open onClose={onClose} title="Member review">
       {!d ? (err ? <Alert kind="error">{err}</Alert> : <Spinner />) : (
@@ -166,7 +191,15 @@ function MemberDetail({ id, onClose, onChanged }: { id: string; onClose: () => v
           {d.bio && <p className="rounded-xl bg-plum-50 p-3 text-slate-700">{d.bio}</p>}
           {d.subscriptions.length > 0 && (
             <div><p className="label">Memberships</p>
-              {d.subscriptions.map((s) => <p key={s.id} className="text-xs">{s.package_code}: {fmtDate(s.starts_at)} → {fmtDate(s.expires_at)} ({s.status})</p>)}</div>
+              {d.subscriptions.map((s) => (
+                <p key={s.id} className="flex flex-wrap items-center gap-2 text-xs">
+                  <span>{s.package_code}: {fmtDate(s.starts_at)} → {fmtDate(s.expires_at)} ({s.status})</span>
+                  {s.source === "free" && <span className="rounded-full bg-emerald-100 px-2 py-0.5 font-bold text-emerald-800">🎁 FREE{s.grant_note ? ` · ${s.grant_note}` : ""}</span>}
+                  {s.source === "free" && s.status === "active" && new Date(s.expires_at) > new Date() && role === "admin" && (
+                    <button className="text-red-700 underline" onClick={() => stopFree(s.id)}>End free access</button>
+                  )}
+                </p>
+              ))}</div>
           )}
           {d.payments.length > 0 && (
             <div><p className="label">Payments</p>
@@ -189,6 +222,24 @@ function MemberDetail({ id, onClose, onChanged }: { id: string; onClose: () => v
                 <input className="input col-span-2 font-mono uppercase" placeholder="Transaction ID" value={act.ref} onChange={(e) => setAct({ ...act, ref: e.target.value })} aria-label="Transaction ID" />
               </div>
               <button className="btn-primary w-full" disabled={act.ref.replace(/[^A-Za-z0-9]/g, "").length < 6} onClick={activate}>Activate now</button>
+            </div>
+          )}
+          {role === "admin" && (
+            <div className="space-y-2 rounded-xl border border-emerald-300 bg-emerald-50 p-4">
+              <p className="font-semibold text-plum-950">🎁 Give free access (no payment)</p>
+              <p className="text-xs text-slate-600">Optional. Use for promotions, partners or friends. The member gets the package without paying and is notified. Paying members are not affected.</p>
+              {giftMsg && <Alert kind="success">{giftMsg}</Alert>}
+              <select className="input" value={gift.pkg} onChange={(e) => setGift({ ...gift, pkg: e.target.value })} aria-label="Free package">
+                {packages?.map((p) => <option key={p.code} value={p.code}>{p.name}</option>)}
+              </select>
+              <div className="grid grid-cols-2 gap-2">
+                <input className="input" type="number" min={1} max={365} inputMode="numeric" aria-label="Number of days"
+                  placeholder={`Days (default ${packages?.find((p) => p.code === gift.pkg)?.duration_days ?? ""})`}
+                  value={gift.days} onChange={(e) => setGift({ ...gift, days: e.target.value })} />
+                <input className="input" maxLength={300} placeholder="Reason (optional)" aria-label="Reason"
+                  value={gift.note} onChange={(e) => setGift({ ...gift, note: e.target.value })} />
+              </div>
+              <button className="btn w-full bg-emerald-600 text-white hover:bg-emerald-700" onClick={giveFree}>Give free access</button>
             </div>
           )}
           <div className="space-y-2 border-t border-plum-100 pt-4">

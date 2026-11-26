@@ -12,7 +12,7 @@ const toLocalInput = (iso: string) => {
   return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
 };
 
-interface Sub { id: string; user_id: string; member_name: string; member_email: string; package_code: string; tier: string; starts_at: string; expires_at: string; state: string; revoke_reason: string | null }
+interface Sub { id: string; user_id: string; member_name: string; member_email: string; package_code: string; tier: string; starts_at: string; expires_at: string; state: string; revoke_reason: string | null; source?: string }
 
 export default function AdminMemberships() {
   const { role } = useAuth();
@@ -79,7 +79,7 @@ export default function AdminMemberships() {
         <div className="space-y-3 md:hidden">
           {rows.map((s) => (
             <div key={s.id} className="card p-4 text-sm">
-              <div className="flex items-start justify-between gap-2"><p className="font-semibold">{s.member_name} <span className="font-normal text-slate-500">· {s.package_code}</span></p><StatusBadge status={s.state} /></div>
+              <div className="flex items-start justify-between gap-2"><p className="font-semibold">{s.member_name} <span className="font-normal text-slate-500">· {s.package_code}</span>{s.source === "free" && <span className="ml-1 rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-bold text-emerald-800">🎁 FREE</span>}</p><StatusBadge status={s.state} /></div>
               <p className="mt-1 text-xs text-slate-500">{fmtDateTime(s.starts_at)} → {fmtDateTime(s.expires_at)}</p>
               {s.state !== "revoked" && <button className="btn-outline btn-sm mt-2" onClick={() => { setEdit(s); setNewExp(toLocalInput(s.expires_at)); setNote(""); }}>Correct</button>}
             </div>
@@ -93,7 +93,7 @@ export default function AdminMemberships() {
               {rows.map((s) => (
                 <tr key={s.id}>
                   <td className="p-3">{s.member_name}<br /><span className="text-xs text-slate-500">{s.member_email}</span></td>
-                  <td>{s.package_code}</td><td>{fmtDateTime(s.starts_at)}</td><td>{fmtDateTime(s.expires_at)}</td>
+                  <td>{s.package_code}{s.source === "free" && <span className="ml-1 rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-bold text-emerald-800">🎁 FREE</span>}</td><td>{fmtDateTime(s.starts_at)}</td><td>{fmtDateTime(s.expires_at)}</td>
                   <td><StatusBadge status={s.state} /></td>
                   <td className="pr-3">{s.state !== "revoked" && <button className="btn-outline btn-sm" onClick={() => { setEdit(s); setNewExp(toLocalInput(s.expires_at)); setNote(""); }}>Correct</button>}</td>
                 </tr>
